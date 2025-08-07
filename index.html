@@ -70,102 +70,9 @@
             padding: 0 20px;
             box-sizing: border-box;
         }
+        /* Отступ для контента, чтобы он не залезал под фиксированную шапку */
         main {
             padding-top: 75px; 
-        }
-        
-        /* Стили для выезжающей панели */
-        #mobile-nav-panel {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 300px;
-            max-width: 80vw;
-            height: 100%;
-            background-color: var(--white);
-            padding: 25px;
-            box-shadow: 2px 0 15px rgba(0,0,0,0.15);
-            z-index: 1050;
-            overflow-y: auto;
-            transform: translateX(-100%);
-            transition: transform 0.35s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-        }
-        
-        #mobile-menu-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1040;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .mobile-nav-header span {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: var(--primary-dark);
-        }
-        
-        #mobile-nav-close-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        #mobile-nav-close-button svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--text-dark);
-        }
-        
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-        
-        .mobile-nav-links li {
-            margin-bottom: 25px;
-        }
-        
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 1.2em;
-            font-weight: 500;
-        }
-        
-        .mobile-nav-footer {
-            margin-top: auto;
-            padding-top: 20px;
-        }
-        
-        .mobile-nav-footer a {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 15px;
-            text-decoration: none;
-            font-size: 1.1em;
-            border-radius: 8px;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -173,28 +80,6 @@
 
     <!-- Placeholder для шапки сайта -->
     <div id="header-placeholder"></div>
-    
-    <!-- HTML для выезжающего меню -->
-    <div id="mobile-menu-overlay"></div>
-    <div id="mobile-nav-panel">
-        <div class="mobile-nav-header">
-            <span>Меню</span>
-            <button id="mobile-nav-close-button" aria-label="Закрыть меню">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#categories">Категории</a></li>
-            <li><a href="#advertising">Реклама</a></li>
-            <li><a href="#contacts">Контакты</a></li>
-        </ul>
-        <div class="mobile-nav-footer">
-            <a href="https://t.me/agromabot" target="_blank">Перейти в бота</a>
-        </div>
-    </div>
 
     <main>
         <!-- ======== СЕКЦИЯ 1: ГЕРОЙ ======== -->
@@ -273,46 +158,12 @@
         <span style="font-size: 32px; line-height: 1;">🚀</span>
     </a>
 
-    <!-- ГЛАВНЫЙ РАБОЧИЙ СКРИПТ -->
+    <!-- ГЛАВНЫЙ СКРИПТ ЗАГРУЗКИ -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-            // --- Функция, которая "оживляет" меню (будет вызвана после загрузки шапки) ---
-            function setupMenuEventListeners() {
-                const openButton = document.getElementById('burger-menu-button');
-                const closeButton = document.getElementById('mobile-nav-close-button');
-                const mobileNavPanel = document.getElementById('mobile-nav-panel');
-                const overlay = document.getElementById('mobile-menu-overlay');
-                
-                if (!openButton || !closeButton || !mobileNavPanel || !overlay) {
-                    console.error('Не удалось найти один или несколько элементов мобильного меню.');
-                    return;
-                }
-                
-                const navLinks = mobileNavPanel.querySelectorAll('a');
-
-                function openMenu() {
-                    overlay.style.display = 'block';
-                    mobileNavPanel.style.transform = 'translateX(0)';
-                    document.body.style.overflow = 'hidden';
-                    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
-                }
-
-                function closeMenu() {
-                    overlay.style.opacity = '0';
-                    mobileNavPanel.style.transform = 'translateX(-100%)';
-                    document.body.style.overflow = '';
-                    setTimeout(() => { overlay.style.display = 'none'; }, 350);
-                }
-
-                openButton.addEventListener('click', openMenu);
-                closeButton.addEventListener('click', closeMenu);
-                overlay.addEventListener('click', closeMenu);
-                navLinks.forEach(link => link.addEventListener('click', closeMenu));
-            }
-
             // --- Функция для загрузки компонентов (header, footer) ---
-            const loadComponent = (url, placeholderId, callback) => {
+            const loadComponent = (url, placeholderId) => {
                 fetch(url)
                     .then(response => {
                         if (response.ok) return response.text();
@@ -320,15 +171,12 @@
                     })
                     .then(data => {
                         document.getElementById(placeholderId).innerHTML = data;
-                        if (callback) {
-                            callback();
-                        }
                     })
                     .catch(error => console.error(`Ошибка загрузки компонента ${url}:`, error));
             };
 
             // --- ЗАПУСК ---
-            loadComponent('header.html', 'header-placeholder', setupMenuEventListeners);
+            loadComponent('header.html', 'header-placeholder');
             loadComponent('footer.html', 'footer-placeholder');
 
             // --- Логика для плавающей кнопки ---
