@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: Основные мета-теги -->
+    <title>AgroMaBot: Купить и продать зерно, сельхозтехнику и запчасти | Аграрная доска объявлений в Telegram</title>
+    <meta name="description" content="Прямая покупка и продажа зерна (пшеница, ячмень, кукуруза, соя), сельхозтехники и запчастей без посредников. AgroMaBot — удобная агро доска объявлений в вашем Telegram. Разместите объявление бесплатно!">
+    <meta name="keywords" content="продать зерно, купить зерно, агро доска объявлений, цена на зерно, купить пшеницу, продать ячмень, сельхозтехника, агробазар, фгис зерно, агро биржа, купить сельхозтехнику, запчасти для трактора">
+
+    <!-- SEO: Schema.org JSON-LD разметка -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AgroMaBot",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Telegram",
+        "description": "Бесплатная доска объявлений для аграриев в Telegram для покупки и продажи зерна, сельхозтехники и запчастей напрямую между пользователями.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB"
+        },
+        "url": "https://t.me/agromabot"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AgroMaBot",
+        "url": "https://t.me/agromabot",
+        "logo": "https://via.placeholder.com/200x60.png?text=AgroMaBot",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "url": "https://t.me/garaev_alex"
+        }
+      }
+    ]
+    </script>
+
+    <style>
+        /* Базовая стилизация для читабельности */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0; color: #333; background-color: #f9f9f9; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        header { background-color: #fff; padding: 20px; border-bottom: 1px solid #eee; text-align: center; }
+        header h1 { color: #2b580c; margin: 0; }
+        .hero { text-align: center; padding: 60px 20px; background-color: #e8f5e9; }
+        .hero h1 { font-size: 2.5em; margin-bottom: 20px; color: #1b3a0a; }
+        .hero p { font-size: 1.2em; max-width: 800px; margin: 0 auto 30px auto; }
+        .cta-button { display: inline-block; background-color: #4CAF50; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; transition: background-color 0.3s; }
+        .cta-button:hover { background-color: #45a049; }
+        .stats { display: flex; justify-content: space-around; text-align: center; padding: 40px 20px; background-color: #fff; }
+        .stat-item { flex-basis: 30%; }
+        .stat-item .number { font-size: 2.5em; font-weight: bold; color: #2b580c; }
+        .stat-item .label { color: #555; }
+        section { padding: 40px 20px; }
+        h2 { text-align: center; font-size: 2em; margin-bottom: 40px; color: #1b3a0a; }
+        .features { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+        .feature-card { background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 25px; text-align: center; flex-basis: 300px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .feature-card h3 { margin-top: 0; color: #2b580c; }
+        .categories ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .categories li { background-color: #e8f5e9; padding: 8px 15px; border-radius: 20px; color: #1b3a0a; font-weight: 500; }
+        .how-it-works .steps { display: flex; justify-content: space-between; gap: 20px; text-align: center; }
+        .step { flex-basis: 30%; }
+        .step .step-number { font-size: 2em; font-weight: bold; color: #4CAF50; background-color: #e8f5e9; border-radius: 50%; width: 50px; height: 50px; line-height: 50px; margin: 0 auto 15px auto; }
+        .advertising { background-color: #e8f5e9; text-align: center; }
+        .advertising-link { text-decoration: none; color: #2b580c; font-weight: bold; }
+        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        footer a { color: #4CAF50; text-decoration: none; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .stats, .features, .how-it-works .steps { flex-direction: column; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" style="text-decoration: none;"><h1>AgroMaBot</h1></a>
+            <p>Ваша аграрная доска объявлений в Telegram</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <!-- H1 - Главный заголовок, нацеленный на ключевые запросы -->
+                <h1>Продавайте и покупайте зерно и сельхозтехнику напрямую через Telegram</h1>
+                <p>AgroMaBot — это бесплатная доска объявлений для фермеров и агропредприятий. Находите покупателей и поставщиков в вашем регионе без посредников и комиссий.</p>
+                <a href="https://t.me/agromabot" target="_blank" class="cta-button">🚀 Начать продавать</a>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-item">
+                <div class="number" id="user-count">567+</div>
+                <div class="label">Активных пользователей</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" id="ad-count">64+</div>
+                <div class="label">Опубликованных объявлений</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" id="region-count">24+</div>
+                <div class="label">Регионов России</div>
+            </div>
+        </section>
+
+        <section id="categories" class="categories">
+            <div class="container">
+                <h2>Что можно купить и продать в AgroMaBot</h2>
+                <h3>Зерновые и масличные культуры</h3>
+                <ul>
+                    <li>Пшеница</li>
+                    <li>Ячмень</li>
+                    <li>Овёс</li>
+                    <li>Кукуруза</li>
+                    <li>Подсолнечник</li>
+                    <li>Соя</li>
+                    <li>Рапс</li>
+                    <li>Горох</li>
+                    <li>Гречиха</li>
+                    <li>Лён</li>
+                </ul>
+                <h3 style="margin-top: 40px;">Сельскохозяйственная техника</h3>
+                 <ul>
+                    <li>Тракторы</li>
+                    <li>Комбайны</li>
+                    <li>Посевная техника</li>
+                    <li>Почвообрабатывающая техника</li>
+                    <li>Прицепы и полуприцепы</li>
+                    <li>Другая спецтехника</li>
+                </ul>
+                 <h3 style="margin-top: 40px;">Запчасти</h3>
+                 <ul>
+                    <li>Запчасти для тракторов</li>
+                    <li>Запчасти для комбайнов</li>
+                    <li>Шины и диски</li>
+                    <li>Двигатели и комплектующие</li>
+                    <li>Расходные материалы</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>Как это работает? Всего 3 простых шага</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Запустите бота</h3>
+                        <p>Перейдите по <a href="https://t.me/agromabot" target="_blank">ссылке</a> и нажмите "Старт". Бот предложит выбрать ваш основной регион.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Создайте или найдите объявление</h3>
+                        <p>Используйте удобные кнопки меню, чтобы подать свое объявление о продаже или начать поиск нужного товара.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Свяжитесь напрямую</h3>
+                        <p>Нашли интересное предложение? Напишите автору объявления прямо в Telegram в один клик. Никаких посредников!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Почему фермеры выбирают AgroMaBot</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>✅ Это бесплатно</h3>
+                        <p>Размещение объявлений о покупке и продаже абсолютно бесплатно. Вы платите 0% комиссии.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🤝 Прямой контакт</h3>
+                        <p>Общайтесь с продавцами и покупателями напрямую, без менеджеров и посреднических схем.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📍 Региональный фокус</h3>
+                        <p>Находите предложения именно в вашем или соседнем регионе, экономя на логистике.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⏱️ Быстро и просто</h3>
+                        <p>Создание объявления занимает не более 2-3 минут. Все интуитивно понятно и всегда под рукой в вашем телефоне.</p>
+                    </div>
+                     <div class="feature-card">
+                        <h3>📢 Эффективная реклама</h3>
+                        <p>Хотите выделиться? Воспользуйтесь недорогими рекламными инструментами для продвижения ваших товаров.</p>
+                    </div>
+                     <div class="feature-card">
+                        <h3>📈 Постоянный рост</h3>
+                        <p>Наша база пользователей постоянно растет, а значит, ваши объявления увидит еще больше людей.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advertising" id="advertising">
+            <div class="container">
+                 <h2>Хотите привлечь еще больше клиентов?</h2>
+                 <p>У нас есть эффективные и недорогие способы продвижения ваших товаров и услуг внутри бота. Ваши объявления увидят все пользователи!</p>
+                 <p>Ознакомьтесь с нашими рекламными возможностями и ценами по ссылке:</p>
+                 <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" class="advertising-link">Посмотреть прайс-лист на рекламу →</a>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AgroMaBot. Все права защищены.</p>
+            <p>По вопросам сотрудничества и рекламы: <a href="https://t.me/garaev_alex" target="_blank">Александр</a> | <a href="https://t.me/ogg_90" target="_blank">Георгий</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
