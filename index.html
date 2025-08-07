@@ -137,24 +137,69 @@
     <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transform: scale(0); transition: transform 0.3s ease-in-out, background-color 0.3s;"><span style="font-size: 32px; line-height: 1;">🚀</span></a>
 
     <!-- ИСПРАВЛЕННЫЙ скрипт. Убрана лишняя логика, она теперь в header.html -->
+        <!-- ГЛАВНЫЙ РАБОЧИЙ СКРИПТ -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const loadComponent = (url, placeholderId) => {
-                return fetch(url)
-                    .then(response => response.ok ? response.text() : Promise.reject('File not found'))
+
+            // --- Функция, которая "оживляет" меню ---
+            function setupMenuEventListeners() {
+                const openButton = document.getElementById('burger-menu-button');
+                const closeButton = document.getElementById('mobile-nav-close-button');
+                const mobileNavPanel = document.getElementById('mobile-nav-panel');
+                const overlay = document.getElementById('mobile-menu-overlay');
+                
+                if (!openButton || !closeButton || !mobileNavPanel || !overlay) {
+                    console.error('Не удалось найти элементы меню. Скрипт не может их активировать.');
+                    return;
+                }
+                
+                const navLinks = mobileNavPanel.querySelectorAll('a');
+
+                function openMenu() {
+                    overlay.style.display = 'block';
+                    mobileNavPanel.style.transform = 'translateX(0)';
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+                }
+
+                function closeMenu() {
+                    overlay.style.opacity = '0';
+                    mobileNavPanel.style.transform = 'translateX(-100%)';
+                    document.body.style.overflow = '';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 350);
+                }
+
+                openButton.addEventListener('click', openMenu);
+                closeButton.addEventListener('click', closeMenu);
+                overlay.addEventListener('click', closeMenu);
+                navLinks.forEach(link => link.addEventListener('click', closeMenu));
+            }
+
+            // --- Функция для загрузки компонентов ---
+            const loadComponent = (url, placeholderId, callback) => {
+                fetch(url)
+                    .then(response => {
+                        if (response.ok) return response.text();
+                        throw new Error('Network response was not ok.');
+                    })
                     .then(data => {
                         document.getElementById(placeholderId).innerHTML = data;
+                        if (callback) callback(); // Вызываем колбэк ПОСЛЕ вставки HTML
                     })
-                    .catch(error => console.error(`Error loading ${url}:`, error));
+                    .catch(error => console.error(`Ошибка загрузки ${url}:`, error));
             };
+
+            // --- ЗАПУСК ---
+            // 1. Загружаем header.html
+            // 2. ПОСЛЕ УСПЕШНОЙ ЗАГРУЗКИ, запускаем функцию setupMenuEventListeners
+            loadComponent('header.html', 'header-placeholder', setupMenuEventListeners);
             
-            // Загружаем header и footer
-            loadComponent('header.html', 'header-placeholder');
+            // Загружаем footer (ему колбэк не нужен)
             loadComponent('footer.html', 'footer-placeholder');
 
+            // --- Логика для плавающей кнопки ---
             const floatingBtn = document.getElementById('floating-tg-button');
             const heroBtn = document.getElementById('hero-cta-button');
-
             const toggleFloatingButton = () => {
                 if (!heroBtn || !floatingBtn) return;
                 if (heroBtn.getBoundingClientRect().bottom < 0) {
@@ -163,10 +208,12 @@
                     floatingBtn.style.transform = 'scale(0)';
                 }
             };
-            
             window.addEventListener('scroll', toggleFloatingButton);
         });
     </script>
 
+    
+
 </body>
 </html>
+
