@@ -1,16 +1,20 @@
 <!-- 
-  Шапка сайта. 
-  - position: sticky делает ее "липкой" к верху экрана на всех устройствах.
-  - backdrop-filter: blur(10px) создает эффект размытого стекла под шапкой при прокрутке.
+  ИСПРАВЛЕНО: Шапка сайта. 
+  - `position: sticky` и `top: 0` обеспечивают закрепление наверху при прокрутке.
+  - `z-index` установлен высоким, чтобы шапка была поверх другого контента.
+  - `background-color` с прозрачностью и `backdrop-filter` создают современный эффект "матового стекла".
 -->
-<header style="background-color: rgba(255,255,255,0.85); border-bottom: 1px solid var(--border-color); padding: 15px 0; position: sticky; top: 0; z-index: 1010; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+<header style="background-color: rgba(255, 255, 255, 0.85); border-bottom: 1px solid var(--border-color); padding: 15px 0; position: sticky; top: 0; z-index: 1010; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
         <a href="#" style="text-decoration: none; font-size: 1.8em; font-weight: 700; color: var(--primary-dark);">
             AgroMa<span style="color: var(--primary-color);">Bot</span>
         </a>
         
-        <!-- Навигация для десктопа (скрывается на мобильных) -->
-        <nav id="desktop-nav" style="display: block;">
+        <!-- 
+            ИСПРАВЛЕНО: Навигация для десктопа.
+            Убран инлайновый стиль `display`, теперь им управляет CSS в теге <style> ниже.
+        -->
+        <nav id="desktop-nav">
             <ul style="margin: 0; padding: 0; list-style: none; display: flex; gap: 30px; align-items: center;">
                 <li><a href="#about" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">О нас</a></li>
                 <li><a href="#categories" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">Категории</a></li>
@@ -19,8 +23,11 @@
             </ul>
         </nav>
 
-        <!-- Кнопка-бургер для мобильных устройств (появляется на мобильных) -->
-        <button id="burger-menu" style="display: none; background: none; border: none; cursor: pointer; padding: 5px; z-index: 2010;">
+        <!-- 
+            ИСПРАВЛЕНО: Кнопка-бургер для мобильных. 
+            Убран инлайновый стиль `display`. Теперь CSS решает, когда ее показывать.
+        -->
+        <button id="burger-menu" style="background: none; border: none; cursor: pointer; padding: 5px; z-index: 2010;">
              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
     </div>
@@ -52,12 +59,16 @@
 </div>
 
 <!-- 
-  ВАЖНО: Эти стили необходимы для адаптивности. 
-  Их невозможно прописать инлайн, так как они зависят от ширины экрана (@media) 
-  и от наличия класса 'is-active', который добавляется через JavaScript.
+  ВАЖНО: Этот блок <style> ОБЯЗАТЕЛЕН для адаптивности.
+  Он решает, когда прятать десктопное меню и показывать кнопку-бургер.
+  Это невозможно сделать с помощью инлайн-стилей.
 -->
 <style>
-    /* На экранах шириной 768px и меньше */
+    /* По умолчанию показываем десктопную навигацию и скрываем бургер */
+    #desktop-nav { display: block; }
+    #burger-menu { display: none; }
+
+    /* На экранах шириной 768px и меньше (планшеты и телефоны) */
     @media (max-width: 768px) {
         #desktop-nav {
             display: none; /* Скрываем навигацию для больших экранов */
@@ -67,8 +78,8 @@
         }
     }
     
-    /* Когда мобильному меню добавляется класс 'is-active' */
+    /* Когда мобильному меню JavaScript добавляет класс 'is-active' */
     #mobile-nav.is-active {
-        transform: translateX(0); /* Меню выезжает на экран */
+        transform: translateX(0); /* Меню плавно выезжает на экран */
     }
 </style>
