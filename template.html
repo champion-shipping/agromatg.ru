@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: Поменяйте title и description для каждой новой страницы -->
+    <title>Новая страница | AgroMaBot</title>
+    <meta name="description" content="Это описание вашей новой страницы.">
+    
+    <!-- Глобальные стили (остаются без изменений) -->
+    <style>
+        :root { --primary-color: #28a745; --primary-dark: #1e7e34; --text-dark: #212529; --text-light: #495057; --bg-light: #f4f8f5; --white: #ffffff; --border-color: #dee2e6; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; color: var(--text-dark); background-color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
+        main { padding-top: 75px; }
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder для шапки сайта -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- 
+            *******************************************************
+            *                                                     *
+            *    ЗДЕСЬ БУДЕТ УНИКАЛЬНОЕ СОДЕРЖИМОЕ ВАШЕЙ СТРАНИЦЫ  *
+            *                                                     *
+            *******************************************************
+        -->
+        <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+            <h1>Заголовок вашей новой страницы</h1>
+            <p>Это пример текстового блока на вашей новой странице.</p>
+        </div>
+        
+    </main>
+
+    <!-- Placeholder для подвала сайта -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Плавающая кнопка (если она нужна на всех страницах) -->
+    <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transform: scale(1); transition: transform 0.3s ease-in-out, background-color 0.3s;">
+        <span style="font-size: 32px; line-height: 1;">🚀</span>
+    </a>
+
+    <!-- ГЛАВНЫЙ СКРИПТ (остается без изменений на всех страницах) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loadComponent = (url, placeholderId) => {
+                fetch(url)
+                    .then(response => {
+                        if (response.ok) return response.text();
+                        throw new Error(`Network response was not ok for ${url}.`);
+                    })
+                    .then(data => {
+                        document.getElementById(placeholderId).innerHTML = data;
+                    })
+                    .catch(error => console.error(`Ошибка загрузки компонента ${url}:`, error));
+            };
+            loadComponent('header.html', 'header-placeholder');
+            loadComponent('footer.html', 'footer-placeholder');
+        });
+    </script>
+</body>
+</html>
