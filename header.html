@@ -1,85 +1,266 @@
 <!-- 
-  ИСПРАВЛЕНО: Шапка сайта. 
-  - `position: sticky` и `top: 0` обеспечивают закрепление наверху при прокрутке.
-  - `z-index` установлен высоким, чтобы шапка была поверх другого контента.
-  - `background-color` с прозрачностью и `backdrop-filter` создают современный эффект "матового стекла".
+  ШАПКА. style="position: fixed" - ключ к закреплению. 
+  Остальные стили создают эффект "матового стекла". 
 -->
-<header style="background-color: rgba(255, 255, 255, 0.85); border-bottom: 1px solid var(--border-color); padding: 15px 0; position: sticky; top: 0; z-index: 1010; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-        <a href="#" style="text-decoration: none; font-size: 1.8em; font-weight: 700; color: var(--primary-dark);">
-            AgroMa<span style="color: var(--primary-color);">Bot</span>
-        </a>
+<header style="background-color: rgba(255, 255, 255, 0.85); position: fixed; width: 100%; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 0; border-bottom: 1px solid var(--border-color); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+    
+    <!-- CSS для управления меню и его адаптивностью. Взято из вашего примера и стилизовано. -->
+    <style>
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
         
-        <!-- 
-            ИСПРАВЛЕНО: Навигация для десктопа.
-            Убран инлайновый стиль `display`, теперь им управляет CSS в теге <style> ниже.
-        -->
+        /* Логотип */
+        .header-logo a {
+            text-decoration: none;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+        }
+        .header-logo span {
+            color: var(--primary-color);
+        }
+
+        /* ----- СТИЛИ ДЕСКТОПНОГО МЕНЮ ----- */
+        #desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        #desktop-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        #desktop-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ----- СТИЛИ МОБИЛЬНОГО МЕНЮ ----- */
+        #burger-menu-container {
+            display: none; /* Скрываем по умолчанию */
+        }
+        
+        /* Медиа-запрос для переключения на мобильное меню */
+        @media (max-width: 768px) {
+            #desktop-nav {
+                display: none !important; /* Важно, чтобы перебить другие стили */
+            }
+            #burger-menu-container {
+                display: block !important; /* Показываем кнопку-бургер */
+            }
+        }
+        
+        /* Кнопка-гамбургер */
+        #burger-menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        #burger-menu-button svg {
+             width: 32px;
+             height: 32px;
+             stroke: var(--text-dark);
+             display: block;
+        }
+        
+        /* Выезжающая панель мобильного меню */
+        #mobile-nav-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            max-width: 80vw;
+            height: 100%;
+            background-color: var(--white);
+            padding: 25px;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+            z-index: 1050;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.35s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        
+        /* Оверлей (затемняющий фон) */
+        #mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        /* Верхний блок в мобильном меню */
+        .mobile-nav-header {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             margin-bottom: 25px;
+             padding-bottom: 20px;
+             border-bottom: 1px solid var(--border-color);
+        }
+        .mobile-nav-header span {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        /* Кнопка закрытия */
+        #mobile-nav-close-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        #mobile-nav-close-button svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--text-dark);
+        }
+
+        /* Навигация в мобильном меню */
+        .mobile-nav-links {
+             list-style: none;
+             padding: 0;
+             margin: 0;
+             flex-grow: 1; /* Занимает доступное пространство */
+        }
+        .mobile-nav-links li {
+            margin-bottom: 25px;
+        }
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+        
+        /* Нижняя кнопка в мобильном меню */
+        .mobile-nav-footer {
+             margin-top: auto; /* Прижимает кнопку к низу */
+             padding-top: 20px;
+        }
+        .mobile-nav-footer a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px;
+            text-decoration: none;
+            font-size: 1.1em;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="header-container">
+        <!-- Логотип -->
+        <div class="header-logo">
+            <a href="#">AgroMa<span>Bot</span></a>
+        </div>
+
+        <!-- Десктопное меню -->
         <nav id="desktop-nav">
-            <ul style="margin: 0; padding: 0; list-style: none; display: flex; gap: 30px; align-items: center;">
-                <li><a href="#about" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">О нас</a></li>
-                <li><a href="#categories" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">Категории</a></li>
-                <li><a href="#advertising" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">Реклама</a></li>
-                <li><a href="#contacts" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">Контакты</a></li>
-            </ul>
+            <a href="#about">О нас</a>
+            <a href="#categories">Категории</a>
+            <a href="#advertising">Реклама</a>
+            <a href="#contacts">Контакты</a>
         </nav>
 
-        <!-- 
-            ИСПРАВЛЕНО: Кнопка-бургер для мобильных. 
-            Убран инлайновый стиль `display`. Теперь CSS решает, когда ее показывать.
-        -->
-        <button id="burger-menu" style="background: none; border: none; cursor: pointer; padding: 5px; z-index: 2010;">
-             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <!-- Кнопка мобильного меню -->
+        <div id="burger-menu-container">
+            <button id="burger-menu-button" aria-label="Открыть меню">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
     </div>
+
+    <!-- Оверлей для затемнения фона при открытом меню -->
+    <div id="mobile-menu-overlay"></div>
+
+    <!-- Мобильное выезжающее меню -->
+    <div id="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span>Меню</span>
+            <button id="mobile-nav-close-button" aria-label="Закрыть меню">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <ul class="mobile-nav-links">
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#categories">Категории</a></li>
+            <li><a href="#advertising">Реклама</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+        
+        <div class="mobile-nav-footer">
+            <a href="https://t.me/agromabot" target="_blank">Перейти в бота</a>
+        </div>
+    </div>
+
+    <!-- СКРИПТ для управления мобильным меню. Взят из вашего примера. -->
+    <script>
+        // Мы ждем загрузки всего документа, чтобы скрипт точно нашел все элементы
+        document.addEventListener('DOMContentLoaded', function () {
+            // Находим все нужные элементы по их ID
+            const openButton = document.getElementById('burger-menu-button');
+            const closeButton = document.getElementById('mobile-nav-close-button');
+            const mobileNavPanel = document.getElementById('mobile-nav-panel');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const navLinks = mobileNavPanel.querySelectorAll('a');
+
+            // Функция, которая открывает меню
+            function openMenu() {
+                if (!mobileNavPanel || !overlay) return; // Проверка, что элементы существуют
+                overlay.style.display = 'block';
+                mobileNavPanel.style.transform = 'translateX(0)';
+                document.body.style.overflow = 'hidden'; // Блокируем прокрутку основной страницы
+                // Небольшая задержка, чтобы анимация сработала
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                }, 10);
+            }
+
+            // Функция, которая закрывает меню
+            function closeMenu() {
+                if (!mobileNavPanel || !overlay) return; // Проверка
+                overlay.style.opacity = '0';
+                mobileNavPanel.style.transform = 'translateX(-100%)';
+                document.body.style.overflow = ''; // Возвращаем прокрутку
+                // Прячем оверлей после завершения анимации
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 350); // Время должно совпадать с transition в CSS
+            }
+
+            // Вешаем обработчики событий
+            if (openButton) openButton.addEventListener('click', openMenu);
+            if (closeButton) closeButton.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu); // Закрытие по клику на фон
+
+            // Добавляем закрытие меню при клике на любую ссылку внутри него
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+    </script>
 </header>
-
-<!-- 
-  Мобильное меню (выезжает слева). 
-  Изначально скрыто за пределами экрана (transform: translateX(-100%)).
-  Появляется при добавлении класса is-active с помощью JS.
--->
-<div id="mobile-nav" style="position: fixed; top: 0; left: 0; width: 300px; max-width: 80%; height: 100%; background-color: var(--white); z-index: 2000; transform: translateX(-100%); transition: transform 0.35s ease-in-out; box-shadow: 5px 0 25px rgba(0,0,0,0.15); display: flex; flex-direction: column; padding: 25px; box-sizing: border-box;">
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 25px;">
-         <span style="font-size: 1.6em; font-weight: 700; color: var(--primary-dark);">Меню</span>
-        <button id="close-nav-btn" style="background: none; border: none; cursor: pointer; padding: 5px;">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-    </div>
-    <ul style="list-style: none; padding: 0; margin: 0; flex-grow: 1;">
-        <li style="margin-bottom: 25px;"><a href="#about" style="text-decoration: none; color: var(--text-dark); font-size: 1.2em; font-weight: 500;">О нас</a></li>
-        <li style="margin-bottom: 25px;"><a href="#categories" style="text-decoration: none; color: var(--text-dark); font-size: 1.2em; font-weight: 500;">Категории</a></li>
-        <li style="margin-bottom: 25px;"><a href="#advertising" style="text-decoration: none; color: var(--text-dark); font-size: 1.2em; font-weight: 500;">Реклама</a></li>
-        <li style="margin-bottom: 25px;"><a href="#contacts" style="text-decoration: none; color: var(--text-dark); font-size: 1.2em; font-weight: 500;">Контакты</a></li>
-    </ul>
-    <div style="margin-top: auto; padding-top: 20px;">
-         <a href="https://t.me/agromabot" target="_blank" style="display: block; width: 100%; text-align: center; background-color: var(--primary-color); color: var(--white); padding: 15px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold;">
-            Перейти в бота
-         </a>
-    </div>
-</div>
-
-<!-- 
-  ВАЖНО: Этот блок <style> ОБЯЗАТЕЛЕН для адаптивности.
-  Он решает, когда прятать десктопное меню и показывать кнопку-бургер.
-  Это невозможно сделать с помощью инлайн-стилей.
--->
-<style>
-    /* По умолчанию показываем десктопную навигацию и скрываем бургер */
-    #desktop-nav { display: block; }
-    #burger-menu { display: none; }
-
-    /* На экранах шириной 768px и меньше (планшеты и телефоны) */
-    @media (max-width: 768px) {
-        #desktop-nav {
-            display: none; /* Скрываем навигацию для больших экранов */
-        }
-        #burger-menu {
-            display: block; /* Показываем кнопку-бургер */
-        }
-    }
-    
-    /* Когда мобильному меню JavaScript добавляет класс 'is-active' */
-    #mobile-nav.is-active {
-        transform: translateX(0); /* Меню плавно выезжает на экран */
-    }
-</style>
