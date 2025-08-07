@@ -30,8 +30,8 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "AgroMaBot",
-        "url": "https://t.me/agromabot",
-        "logo": "https://via.placeholder.com/200x60.png?text=AgroMaBot",
+        "url": "https://(ваш-домен).ru",
+        "logo": "https://(ваш-домен).ru/logo.png",
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
@@ -40,184 +40,155 @@
       }
     ]
     </script>
-
+    
+    <!-- Глобальные стили для body и общие переменные. Это единственный <style> блок в body -->
     <style>
-        /* Базовая стилизация для читабельности */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0; color: #333; background-color: #f9f9f9; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        header { background-color: #fff; padding: 20px; border-bottom: 1px solid #eee; text-align: center; }
-        header h1 { color: #2b580c; margin: 0; }
-        .hero { text-align: center; padding: 60px 20px; background-color: #e8f5e9; }
-        .hero h1 { font-size: 2.5em; margin-bottom: 20px; color: #1b3a0a; }
-        .hero p { font-size: 1.2em; max-width: 800px; margin: 0 auto 30px auto; }
-        .cta-button { display: inline-block; background-color: #4CAF50; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; transition: background-color 0.3s; }
-        .cta-button:hover { background-color: #45a049; }
-        .stats { display: flex; justify-content: space-around; text-align: center; padding: 40px 20px; background-color: #fff; }
-        .stat-item { flex-basis: 30%; }
-        .stat-item .number { font-size: 2.5em; font-weight: bold; color: #2b580c; }
-        .stat-item .label { color: #555; }
-        section { padding: 40px 20px; }
-        h2 { text-align: center; font-size: 2em; margin-bottom: 40px; color: #1b3a0a; }
-        .features { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-        .feature-card { background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 25px; text-align: center; flex-basis: 300px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .feature-card h3 { margin-top: 0; color: #2b580c; }
-        .categories ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-        .categories li { background-color: #e8f5e9; padding: 8px 15px; border-radius: 20px; color: #1b3a0a; font-weight: 500; }
-        .how-it-works .steps { display: flex; justify-content: space-between; gap: 20px; text-align: center; }
-        .step { flex-basis: 30%; }
-        .step .step-number { font-size: 2em; font-weight: bold; color: #4CAF50; background-color: #e8f5e9; border-radius: 50%; width: 50px; height: 50px; line-height: 50px; margin: 0 auto 15px auto; }
-        .advertising { background-color: #e8f5e9; text-align: center; }
-        .advertising-link { text-decoration: none; color: #2b580c; font-weight: bold; }
-        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-        footer a { color: #4CAF50; text-decoration: none; }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2em; }
-            .stats, .features, .how-it-works .steps { flex-direction: column; gap: 30px; }
+        :root {
+            --primary-color: #28a745;
+            --primary-dark: #1e7e34;
+            --text-dark: #212529;
+            --text-light: #495057;
+            --bg-light: #f4f8f5;
+            --white: #ffffff;
+            --border-color: #dee2e6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Класс для активации мобильного меню */
+        .mobile-nav-active {
+            overflow: hidden;
         }
     </style>
+
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <a href="#" style="text-decoration: none;"><h1>AgroMaBot</h1></a>
-            <p>Ваша аграрная доска объявлений в Telegram</p>
-        </div>
-    </header>
+    <!-- Placeholder для шапки сайта -->
+    <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <!-- H1 - Главный заголовок, нацеленный на ключевые запросы -->
-                <h1>Продавайте и покупайте зерно и сельхозтехнику напрямую через Telegram</h1>
-                <p>AgroMaBot — это бесплатная доска объявлений для фермеров и агропредприятий. Находите покупателей и поставщиков в вашем регионе без посредников и комиссий.</p>
-                <a href="https://t.me/agromabot" target="_blank" class="cta-button">🚀 Начать продавать</a>
+        <!-- ======== СЕКЦИЯ 1: ГЕРОЙ ======== -->
+        <section id="hero" style="background-color: var(--bg-light); text-align: center; padding: 80px 0; border-bottom: 1px solid var(--border-color);">
+            <div class="container" style="max-width: 900px;">
+                <h1 style="font-size: 3em; margin: 0 0 20px 0; color: var(--text-dark);">Продавайте и покупайте агропродукцию напрямую</h1>
+                <p style="font-size: 1.25em; color: var(--text-light); margin-bottom: 40px;">AgroMaBot — это современная аграрная доска объявлений в вашем Telegram. Размещайте объявления о продаже зерна, техники и запчастей бесплатно и без посредников.</p>
+                <a href="https://t.me/agromabot" target="_blank" style="display: inline-block; background-color: var(--primary-color); color: var(--white); padding: 18px 35px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
+                    🚀 Запустить бота бесплатно
+                </a>
             </div>
         </section>
 
-        <section class="stats">
-            <div class="stat-item">
-                <div class="number" id="user-count">567+</div>
-                <div class="label">Активных пользователей</div>
-            </div>
-            <div class="stat-item">
-                <div class="number" id="ad-count">64+</div>
-                <div class="label">Опубликованных объявлений</div>
-            </div>
-            <div class="stat-item">
-                <div class="number" id="region-count">24+</div>
-                <div class="label">Регионов России</div>
-            </div>
-        </section>
-
-        <section id="categories" class="categories">
+        <!-- ======== СЕКЦИЯ 2: СТАТИСТИКА ("О НАС" В ЦИФРАХ) ======== -->
+        <section id="about" style="padding: 60px 0; background-color: var(--white);">
             <div class="container">
-                <h2>Что можно купить и продать в AgroMaBot</h2>
-                <h3>Зерновые и масличные культуры</h3>
-                <ul>
-                    <li>Пшеница</li>
-                    <li>Ячмень</li>
-                    <li>Овёс</li>
-                    <li>Кукуруза</li>
-                    <li>Подсолнечник</li>
-                    <li>Соя</li>
-                    <li>Рапс</li>
-                    <li>Горох</li>
-                    <li>Гречиха</li>
-                    <li>Лён</li>
-                </ul>
-                <h3 style="margin-top: 40px;">Сельскохозяйственная техника</h3>
-                 <ul>
-                    <li>Тракторы</li>
-                    <li>Комбайны</li>
-                    <li>Посевная техника</li>
-                    <li>Почвообрабатывающая техника</li>
-                    <li>Прицепы и полуприцепы</li>
-                    <li>Другая спецтехника</li>
-                </ul>
-                 <h3 style="margin-top: 40px;">Запчасти</h3>
-                 <ul>
-                    <li>Запчасти для тракторов</li>
-                    <li>Запчасти для комбайнов</li>
-                    <li>Шины и диски</li>
-                    <li>Двигатели и комплектующие</li>
-                    <li>Расходные материалы</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="how-it-works" class="how-it-works">
-            <div class="container">
-                <h2>Как это работает? Всего 3 простых шага</h2>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Запустите бота</h3>
-                        <p>Перейдите по <a href="https://t.me/agromabot" target="_blank">ссылке</a> и нажмите "Старт". Бот предложит выбрать ваш основной регион.</p>
+                <div style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">567+</div>
+                        <div style="font-size: 1.1em; color: var(--text-light);">Активных пользователей</div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Создайте или найдите объявление</h3>
-                        <p>Используйте удобные кнопки меню, чтобы подать свое объявление о продаже или начать поиск нужного товара.</p>
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">64+</div>
+                        <div style="font-size: 1.1em; color: var(--text-light);">Опубликованных объявлений</div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Свяжитесь напрямую</h3>
-                        <p>Нашли интересное предложение? Напишите автору объявления прямо в Telegram в один клик. Никаких посредников!</p>
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">24+</div>
+                        <div style="font-size: 1.1em; color: var(--text-light);">Подключенных регионов</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======== СЕКЦИЯ 3: КАТЕГОРИИ ======== -->
+        <section id="categories" style="padding: 80px 0; background-color: var(--bg-light);">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 2.5em; margin: 0 0 50px 0; color: var(--text-dark);">Основные категории объявлений</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <!-- Карточка 1: Зерно -->
+                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M20.69 12.18C20.43 12.33 20.21 12.43 20 12.47V22H18V13.88C15.82 15.05 13.68 15.5 12 15.5C10.32 15.5 8.18 15.05 6 13.88V22H4V12.47C3.79 12.43 3.57 12.33 3.31 12.18C2.5 11.69 2 10.96 2 10.17C2 8.97 2.99 8 4.25 8C5.74 8 7 9.24 7 10.75C7 11.33 6.78 11.85 6.43 12.24C7.92 12.92 9.89 13.5 12 13.5C14.11 13.5 16.08 12.92 17.57 12.24C17.22 11.85 17 11.33 17 10.75C17 9.24 18.26 8 19.75 8C21.01 8 22 8.97 22 10.17C22 10.96 21.5 11.69 20.69 12.18ZM12 2C9.89 2 7.92 2.58 6.43 3.26C6.78 3.65 7 4.17 7 4.75C7 6.26 5.74 7.5 4.25 7.5C2.99 7.5 2 6.53 2 5.33C2 4.54 2.5 3.81 3.31 3.32C3.57 3.17 3.79 3.07 4 3.03V2H6V2.62C8.18 1.45 10.32 1 12 1C13.68 1 15.82 1.45 18 2.62V2H20V3.03C20.21 3.07 20.43 3.17 20.69 3.32C21.5 3.81 22 4.54 22 5.33C22 6.53 21.01 7.5 19.75 7.5C18.26 7.5 17 6.26 17 4.75C17 4.17 17.22 3.65 17.57 3.26C16.08 2.58 14.11 2 12 2Z" fill="currentColor"/></svg>
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Зерновые и масличные</h3>
+                        <p style="color: var(--text-light);">Пшеница, ячмень, кукуруза, соя, подсолнечник, рапс и другие культуры.</p>
+                    </div>
+                    <!-- Карточка 2: Техника -->
+                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M21.5 12.5C22.3284 12.5 23 11.8284 23 11C23 10.1716 22.3284 9.5 21.5 9.5V12.5ZM1 11C1 10.1716 1.67157 9.5 2.5 9.5V12.5C1.67157 12.5 1 11.8284 1 11ZM2.5 9.5H21.5V12.5H2.5V9.5ZM18.5 1C19.3284 1 20 1.67157 20 2.5C20 3.32843 19.3284 4 18.5 4V1H18.5ZM5.5 4C4.67157 4 4 3.32843 4 2.5C4 1.67157 4.67157 1 5.5 1V4ZM18.5 4H5.5V1H18.5V4ZM16.5 23C15.6716 23 15 22.3284 15 21.5C15 20.6716 15.6716 20 16.5 20V23ZM7.5 20C8.32843 20 9 20.6716 9 21.5C9 22.3284 8.32843 23 7.5 23V20ZM16.5 20H7.5V23H16.5V20ZM6 12L4 16H6L8 12H6ZM18 12L16 16H18L20 12H18ZM11 2.5C11 5.55228 13.4477 8 16.5 8V5C14.8431 5 13.5 3.84315 13.5 2.5H11ZM7.5 8C10.5523 8 13 5.55228 13 2.5H10.5C10.5 3.84315 9.15685 5 7.5 5V8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Сельхозтехника</h3>
+                        <p style="color: var(--text-light);">Тракторы, комбайны, посевное и почвообрабатывающее оборудование.</p>
+                    </div>
+                    <!-- Карточка 3: Запчасти -->
+                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.4399 7.42999L20.9999 5.99999L18.0699 3.06999L16.5499 4.54999C15.4299 3.75999 14.0799 3.23999 12.6299 3.06999L12.0199 1H9.97994L9.36994 3.06999C7.91994 3.23999 6.56994 3.75999 5.44994 4.54999L3.92994 3.06999L1.00994 5.99999L2.56994 7.42999C1.93994 8.32999 1.50994 9.38999 1.34994 10.52L-0.00012207 11V13L1.34994 13.48C1.50994 14.61 1.93994 15.67 2.56994 16.57L1.00994 18.07L3.92994 20.99L5.44994 19.45C6.56994 20.24 7.91994 20.76 9.36994 20.93L9.97994 23H12.0199L12.6299 20.93C14.0799 20.76 15.4299 20.24 16.5499 19.45L18.0699 20.99L20.9999 18.07L19.4399 16.57C20.0699 15.67 20.4999 14.61 20.6599 13.48L21.9999 13V11L20.6599 10.52C20.4999 9.38999 20.0699 8.32999 19.4399 7.42999Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Запчасти и комплектующие</h3>
+                        <p style="color: var(--text-light);">Все для ремонта и обслуживания вашей техники: от шин и дисков до двигателей.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="features">
-            <div class="container">
-                <h2>Почему фермеры выбирают AgroMaBot</h2>
-                <div class="features">
-                    <div class="feature-card">
-                        <h3>✅ Это бесплатно</h3>
-                        <p>Размещение объявлений о покупке и продаже абсолютно бесплатно. Вы платите 0% комиссии.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>🤝 Прямой контакт</h3>
-                        <p>Общайтесь с продавцами и покупателями напрямую, без менеджеров и посреднических схем.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>📍 Региональный фокус</h3>
-                        <p>Находите предложения именно в вашем или соседнем регионе, экономя на логистике.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>⏱️ Быстро и просто</h3>
-                        <p>Создание объявления занимает не более 2-3 минут. Все интуитивно понятно и всегда под рукой в вашем телефоне.</p>
-                    </div>
-                     <div class="feature-card">
-                        <h3>📢 Эффективная реклама</h3>
-                        <p>Хотите выделиться? Воспользуйтесь недорогими рекламными инструментами для продвижения ваших товаров.</p>
-                    </div>
-                     <div class="feature-card">
-                        <h3>📈 Постоянный рост</h3>
-                        <p>Наша база пользователей постоянно растет, а значит, ваши объявления увидит еще больше людей.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="advertising" id="advertising">
-            <div class="container">
-                 <h2>Хотите привлечь еще больше клиентов?</h2>
-                 <p>У нас есть эффективные и недорогие способы продвижения ваших товаров и услуг внутри бота. Ваши объявления увидят все пользователи!</p>
-                 <p>Ознакомьтесь с нашими рекламными возможностями и ценами по ссылке:</p>
-                 <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" class="advertising-link">Посмотреть прайс-лист на рекламу →</a>
+        <!-- ======== СЕКЦИЯ 4: РЕКЛАМА ======== -->
+        <section id="advertising" style="padding: 80px 0; background-color: var(--white); text-align: center;">
+            <div class="container" style="max-width: 800px;">
+                <h2 style="font-size: 2.5em; margin: 0 0 20px 0; color: var(--text-dark);">Реклама в AgroMaBot</h2>
+                <p style="font-size: 1.2em; color: var(--text-light); margin-bottom: 30px;">Хотите ускорить продажу или продвинуть свои услуги? Воспользуйтесь нашими рекламными возможностями! Ваше объявление увидят все пользователи бота в виде персонального уведомления.</p>
+                <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" style="display: inline-block; background-color: transparent; color: var(--primary-color); padding: 16px 35px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold; transition: background-color 0.3s, color 0.3s; border: 2px solid var(--primary-color);">
+                    Узнать цены и форматы
+                </a>
             </div>
         </section>
         
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AgroMaBot. Все права защищены.</p>
-            <p>По вопросам сотрудничества и рекламы: <a href="https://t.me/garaev_alex" target="_blank">Александр</a> | <a href="https://t.me/ogg_90" target="_blank">Георгий</a></p>
-        </div>
-    </footer>
+    <!-- Placeholder для подвала сайта -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Скрипт для загрузки header и footer и управления мобильным меню -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loadComponent = (url, placeholderId) => {
+                return fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById(placeholderId).innerHTML = data;
+                    });
+            };
+
+            // Загружаем header, затем инициализируем логику меню
+            loadComponent('header.html', 'header-placeholder').then(() => {
+                const burgerBtn = document.getElementById('burger-menu');
+                const mobileNav = document.getElementById('mobile-nav');
+                const closeBtn = document.getElementById('close-nav-btn');
+                const navLinks = mobileNav.querySelectorAll('a');
+
+                const toggleNav = () => {
+                    mobileNav.classList.toggle('is-active');
+                    document.body.classList.toggle('mobile-nav-active');
+                };
+
+                if (burgerBtn && mobileNav && closeBtn) {
+                    burgerBtn.addEventListener('click', toggleNav);
+                    closeBtn.addEventListener('click', toggleNav);
+                    
+                    // Закрываем меню при клике на ссылку
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', toggleNav);
+                    });
+                }
+            });
+
+            // Загружаем footer
+            loadComponent('footer.html', 'footer-placeholder');
+        });
+    </script>
 
 </body>
 </html>
