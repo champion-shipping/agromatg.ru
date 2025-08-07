@@ -70,17 +70,131 @@
             padding: 0 20px;
             box-sizing: border-box;
         }
-        /* Отступ для контента, чтобы он не залезал под фиксированную шапку */
         main {
             padding-top: 75px; 
         }
+        
+        /* Стили для выезжающей панели */
+        #mobile-nav-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            max-width: 80vw;
+            height: 100%;
+            background-color: var(--white);
+            padding: 25px;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+            z-index: 1050;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.35s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        
+        #mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-nav-header span {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        #mobile-nav-close-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        #mobile-nav-close-button svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--text-dark);
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+        
+        .mobile-nav-footer {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+        
+        .mobile-nav-footer a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px;
+            text-decoration: none;
+            font-size: 1.1em;
+            border-radius: 8px;
+            font-weight: bold;
+        }
     </style>
-
 </head>
 <body>
 
     <!-- Placeholder для шапки сайта -->
     <div id="header-placeholder"></div>
+    
+    <!-- HTML для выезжающего меню -->
+    <div id="mobile-menu-overlay"></div>
+    <div id="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span>Меню</span>
+            <button id="mobile-nav-close-button" aria-label="Закрыть меню">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#categories">Категории</a></li>
+            <li><a href="#advertising">Реклама</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <a href="https://t.me/agromabot" target="_blank">Перейти в бота</a>
+        </div>
+    </div>
 
     <main>
         <!-- ======== СЕКЦИЯ 1: ГЕРОЙ ======== -->
@@ -88,7 +202,7 @@
             <div class="container" style="max-width: 900px;">
                 <h1 style="font-size: clamp(2.2em, 6vw, 3em); margin: 0 0 20px 0; color: var(--text-dark);">Продавайте и покупайте агропродукцию напрямую</h1>
                 <p style="font-size: clamp(1em, 4vw, 1.25em); color: var(--text-light); margin-bottom: 40px;">AgroMaBot — это современная аграрная доска объявлений в вашем Telegram. Размещайте объявления о продаже зерна, техники и запчастей бесплатно и без посредников.</p>
-                <a href="https://t.me/agromabot" target="_blank" id="hero-cta-button" style="display: inline-block; background-color: var(--primary-color); color: var(--white); padding: 18px 35px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
+                <a href="https://t.me/agromabot" target="_blank" id="hero-cta-button" style="display: inline-block; background-color: var(--primary-color); color: var(--white); padding: 18px 35px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
                     🚀 Начать продавать!
                 </a>
             </div>
@@ -98,9 +212,18 @@
         <section id="about" style="padding: 60px 0; background-color: var(--white);">
             <div class="container">
                 <div style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 30px;">
-                    <div style="flex: 1; min-width: 220px;"><div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">567+</div><div style="font-size: 1.1em; color: var(--text-light);">Активных пользователей</div></div>
-                    <div style="flex: 1; min-width: 220px;"><div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">64+</div><div style="font-size: 1.1em; color: var(--text-light);">Опубликованных объявлений</div></div>
-                    <div style="flex: 1; min-width: 220px;"><div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">24+</div><div style="font-size: 1.1em; color: var(--text-light);">Подключенных регионов</div></div>
+                    <div style="flex: 1; min-width: 220px;">
+                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">567+</div>
+                        <div style="font-size: 1.1em; color: var(--text-light);">Активных пользователей</div>
+                    </div>
+                    <div style="flex: 1; min-width: 220px;">
+                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">64+</div>
+                        <div style="font-size: 1.1em; color: var(--text-light);">Опубликованных объявлений</div>
+                    </div>
+                    <div style="flex: 1; min-width: 220px;">
+                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">24+</div>
+                        <div style="font-size: 1.1em; color: var(--text-light);">Подключенных регионов</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -110,9 +233,21 @@
             <div class="container">
                 <h2 style="text-align: center; font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 50px 0; color: var(--text-dark);">Основные категории объявлений</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M20.69 12.18C20.43 12.33 20.21 12.43 20 12.47V22H18V13.88C15.82 15.05 13.68 15.5 12 15.5C10.32 15.5 8.18 15.05 6 13.88V22H4V12.47C3.79 12.43 3.57 12.33 3.31 12.18C2.5 11.69 2 10.96 2 10.17C2 8.97 2.99 8 4.25 8C5.74 8 7 9.24 7 10.75C7 11.33 6.78 11.85 6.43 12.24C7.92 12.92 9.89 13.5 12 13.5C14.11 13.5 16.08 12.92 17.57 12.24C17.22 11.85 17 11.33 17 10.75C17 9.24 18.26 8 19.75 8C21.01 8 22 8.97 22 10.17C22 10.96 21.5 11.69 20.69 12.18ZM12 2C9.89 2 7.92 2.58 6.43 3.26C6.78 3.65 7 4.17 7 4.75C7 6.26 5.74 7.5 4.25 7.5C2.99 7.5 2 6.53 2 5.33C2 4.54 2.5 3.81 3.31 3.32C3.57 3.17 3.79 3.07 4 3.03V2H6V2.62C8.18 1.45 10.32 1 12 1C13.68 1 15.82 1.45 18 2.62V2H20V3.03C20.21 3.07 20.43 3.17 20.69 3.32C21.5 3.81 22 4.54 22 5.33C22 6.53 21.01 7.5 19.75 7.5C18.26 7.5 17 6.26 17 4.75C17 4.17 17.22 3.65 17.57 3.26C16.08 2.58 14.11 2 12 2Z" fill="currentColor"/></svg><h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Зерновые и масличные</h3><p style="color: var(--text-light);">Пшеница, ячмень, кукуруза, соя, подсолнечник, рапс и другие культуры.</p></div>
-                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M21.5 12.5C22.3284 12.5 23 11.8284 23 11C23 10.1716 22.3284 9.5 21.5 9.5V12.5ZM1 11C1 10.1716 1.67157 9.5 2.5 9.5V12.5C1.67157 12.5 1 11.8284 1 11ZM2.5 9.5H21.5V12.5H2.5V9.5ZM18.5 1C19.3284 1 20 1.67157 20 2.5C20 3.32843 19.3284 4 18.5 4V1H18.5ZM5.5 4C4.67157 4 4 3.32843 4 2.5C4 1.67157 4.67157 1 5.5 1V4ZM18.5 4H5.5V1H18.5V4ZM16.5 23C15.6716 23 15 22.3284 15 21.5C15 20.6716 15.6716 20 16.5 20V23ZM7.5 20C8.32843 20 9 20.6716 9 21.5C9 22.3284 8.32843 23 7.5 23V20ZM16.5 20H7.5V23H16.5V20ZM6 12L4 16H6L8 12H6ZM18 12L16 16H18L20 12H18ZM11 2.5C11 5.55228 13.4477 8 16.5 8V5C14.8431 5 13.5 3.84315 13.5 2.5H11ZM7.5 8C10.5523 8 13 5.55228 13 2.5H10.5C10.5 3.84315 9.15685 5 7.5 5V8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Сельхозтехника</h3><p style="color: var(--text-light);">Тракторы, комбайны, посевное и почвообрабатывающее оборудование.</p></div>
-                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.4399 7.42999L20.9999 5.99999L18.0699 3.06999L16.5499 4.54999C15.4299 3.75999 14.0799 3.23999 12.6299 3.06999L12.0199 1H9.97994L9.36994 3.06999C7.91994 3.23999 6.56994 3.75999 5.44994 4.54999L3.92994 3.06999L1.00994 5.99999L2.56994 7.42999C1.93994 8.32999 1.50994 9.38999 1.34994 10.52L-0.00012207 11V13L1.34994 13.48C1.50994 14.61 1.93994 15.67 2.56994 16.57L1.00994 18.07L3.92994 20.99L5.44994 19.45C6.56994 20.24 7.91994 20.76 9.36994 20.93L9.97994 23H12.0199L12.6299 20.93C14.0799 20.76 15.4299 20.24 16.5499 19.45L18.0699 20.99L20.9999 18.07L19.4399 16.57C20.0699 15.67 20.4999 14.61 20.6599 13.48L21.9999 13V11L20.6599 10.52C20.4999 9.38999 20.0699 8.32999 19.4399 7.42999Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Запчасти и комплектующие</h3><p style="color: var(--text-light);">Все для ремонта и обслуживания вашей техники: от шин и дисков до двигателей.</p></div>
+                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M20.69 12.18C20.43 12.33 20.21 12.43 20 12.47V22H18V13.88C15.82 15.05 13.68 15.5 12 15.5C10.32 15.5 8.18 15.05 6 13.88V22H4V12.47C3.79 12.43 3.57 12.33 3.31 12.18C2.5 11.69 2 10.96 2 10.17C2 8.97 2.99 8 4.25 8C5.74 8 7 9.24 7 10.75C7 11.33 6.78 11.85 6.43 12.24C7.92 12.92 9.89 13.5 12 13.5C14.11 13.5 16.08 12.92 17.57 12.24C17.22 11.85 17 11.33 17 10.75C17 9.24 18.26 8 19.75 8C21.01 8 22 8.97 22 10.17C22 10.96 21.5 11.69 20.69 12.18ZM12 2C9.89 2 7.92 2.58 6.43 3.26C6.78 3.65 7 4.17 7 4.75C7 6.26 5.74 7.5 4.25 7.5C2.99 7.5 2 6.53 2 5.33C2 4.54 2.5 3.81 3.31 3.32C3.57 3.17 3.79 3.07 4 3.03V2H6V2.62C8.18 1.45 10.32 1 12 1C13.68 1 15.82 1.45 18 2.62V2H20V3.03C20.21 3.07 20.43 3.17 20.69 3.32C21.5 3.81 22 4.54 22 5.33C22 6.53 21.01 7.5 19.75 7.5C18.26 7.5 17 6.26 17 4.75C17 4.17 17.22 3.65 17.57 3.26C16.08 2.58 14.11 2 12 2Z" fill="currentColor"/></svg>
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Зерновые и масличные</h3>
+                        <p style="color: var(--text-light);">Пшеница, ячмень, кукуруза, соя, подсолнечник, рапс и другие культуры.</p>
+                    </div>
+                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M21.5 12.5C22.3284 12.5 23 11.8284 23 11C23 10.1716 22.3284 9.5 21.5 9.5V12.5ZM1 11C1 10.1716 1.67157 9.5 2.5 9.5V12.5C1.67157 12.5 1 11.8284 1 11ZM2.5 9.5H21.5V12.5H2.5V9.5ZM18.5 1C19.3284 1 20 1.67157 20 2.5C20 3.32843 19.3284 4 18.5 4V1H18.5ZM5.5 4C4.67157 4 4 3.32843 4 2.5C4 1.67157 4.67157 1 5.5 1V4ZM18.5 4H5.5V1H18.5V4ZM16.5 23C15.6716 23 15 22.3284 15 21.5C15 20.6716 15.6716 20 16.5 20V23ZM7.5 20C8.32843 20 9 20.6716 9 21.5C9 22.3284 8.32843 23 7.5 23V20ZM16.5 20H7.5V23H16.5V20ZM6 12L4 16H6L8 12H6ZM18 12L16 16H18L20 12H18ZM11 2.5C11 5.55228 13.4477 8 16.5 8V5C14.8431 5 13.5 3.84315 13.5 2.5H11ZM7.5 8C10.5523 8 13 5.55228 13 2.5H10.5C10.5 3.84315 9.15685 5 7.5 5V8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Сельхозтехника</h3>
+                        <p style="color: var(--text-light);">Тракторы, комбайны, посевное и почвообрабатывающее оборудование.</p>
+                    </div>
+                    <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; color: var(--primary-color);"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.4399 7.42999L20.9999 5.99999L18.0699 3.06999L16.5499 4.54999C15.4299 3.75999 14.0799 3.23999 12.6299 3.06999L12.0199 1H9.97994L9.36994 3.06999C7.91994 3.23999 6.56994 3.75999 5.44994 4.54999L3.92994 3.06999L1.00994 5.99999L2.56994 7.42999C1.93994 8.32999 1.50994 9.38999 1.34994 10.52L-0.00012207 11V13L1.34994 13.48C1.50994 14.61 1.93994 15.67 2.56994 16.57L1.00994 18.07L3.92994 20.99L5.44994 19.45C6.56994 20.24 7.91994 20.76 9.36994 20.93L9.97994 23H12.0199L12.6299 20.93C14.0799 20.76 15.4299 20.24 16.5499 19.45L18.0699 20.99L20.9999 18.07L19.4399 16.57C20.0699 15.67 20.4999 14.61 20.6599 13.48L21.9999 13V11L20.6599 10.52C20.4999 9.38999 20.0699 8.32999 19.4399 7.42999Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Запчасти и комплектующие</h3>
+                        <p style="color: var(--text-light);">Все для ремонта и обслуживания вашей техники: от шин и дисков до двигателей.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -122,7 +257,7 @@
             <div class="container" style="max-width: 800px;">
                 <h2 style="font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 20px 0; color: var(--text-dark);">Реклама в AgroMaBot</h2>
                 <p style="font-size: clamp(1em, 4vw, 1.2em); color: var(--text-light); margin-bottom: 30px;">Хотите ускорить продажу или продвинуть свои услуги? Воспользуйтесь нашими рекламными возможностями! Ваше объявление увидят все пользователи бота в виде персонального уведомления.</p>
-                <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" style="display: inline-block; background-color: transparent; color: var(--primary-color); padding: 16px 35px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold; transition: background-color 0.3s, color 0.3s; border: 2px solid var(--primary-color);">
+                <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" style="display: inline-block; background-color: transparent; color: var(--primary-color); padding: 16px 35px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold; border: 2px solid var(--primary-color);">
                     Узнать цены и форматы
                 </a>
             </div>
@@ -134,14 +269,15 @@
     <div id="footer-placeholder"></div>
 
     <!-- Плавающая кнопка для перехода в ТГ -->
-    <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transform: scale(0); transition: transform 0.3s ease-in-out, background-color 0.3s;"><span style="font-size: 32px; line-height: 1;">🚀</span></a>
+    <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transform: scale(0); transition: transform 0.3s ease-in-out, background-color 0.3s;">
+        <span style="font-size: 32px; line-height: 1;">🚀</span>
+    </a>
 
-    <!-- ИСПРАВЛЕННЫЙ скрипт. Убрана лишняя логика, она теперь в header.html -->
-        <!-- ГЛАВНЫЙ РАБОЧИЙ СКРИПТ -->
+    <!-- ГЛАВНЫЙ РАБОЧИЙ СКРИПТ -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-            // --- Функция, которая "оживляет" меню ---
+            // --- Функция, которая "оживляет" меню (будет вызвана после загрузки шапки) ---
             function setupMenuEventListeners() {
                 const openButton = document.getElementById('burger-menu-button');
                 const closeButton = document.getElementById('mobile-nav-close-button');
@@ -149,7 +285,7 @@
                 const overlay = document.getElementById('mobile-menu-overlay');
                 
                 if (!openButton || !closeButton || !mobileNavPanel || !overlay) {
-                    console.error('Не удалось найти элементы меню. Скрипт не может их активировать.');
+                    console.error('Не удалось найти один или несколько элементов мобильного меню.');
                     return;
                 }
                 
@@ -175,26 +311,24 @@
                 navLinks.forEach(link => link.addEventListener('click', closeMenu));
             }
 
-            // --- Функция для загрузки компонентов ---
+            // --- Функция для загрузки компонентов (header, footer) ---
             const loadComponent = (url, placeholderId, callback) => {
                 fetch(url)
                     .then(response => {
                         if (response.ok) return response.text();
-                        throw new Error('Network response was not ok.');
+                        throw new Error(`Network response was not ok for ${url}.`);
                     })
                     .then(data => {
                         document.getElementById(placeholderId).innerHTML = data;
-                        if (callback) callback(); // Вызываем колбэк ПОСЛЕ вставки HTML
+                        if (callback) {
+                            callback();
+                        }
                     })
-                    .catch(error => console.error(`Ошибка загрузки ${url}:`, error));
+                    .catch(error => console.error(`Ошибка загрузки компонента ${url}:`, error));
             };
 
             // --- ЗАПУСК ---
-            // 1. Загружаем header.html
-            // 2. ПОСЛЕ УСПЕШНОЙ ЗАГРУЗКИ, запускаем функцию setupMenuEventListeners
             loadComponent('header.html', 'header-placeholder', setupMenuEventListeners);
-            
-            // Загружаем footer (ему колбэк не нужен)
             loadComponent('footer.html', 'footer-placeholder');
 
             // --- Логика для плавающей кнопки ---
@@ -211,9 +345,5 @@
             window.addEventListener('scroll', toggleFloatingButton);
         });
     </script>
-
-    
-
 </body>
 </html>
-
