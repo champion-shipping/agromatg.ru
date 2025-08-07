@@ -159,9 +159,39 @@
     </a>
 
     <!-- ГЛАВНЫЙ СКРИПТ ЗАГРУЗКИ -->
-     <script>
+   <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const loadComponent = (url, placeholderId) => {
+            // --- Функция, которая "оживляет" меню (будет вызвана после загрузки шапки) ---
+            function setupMenuEventListeners() {
+                const openButton = document.getElementById('burger-menu-button');
+                const closeButton = document.getElementById('mobile-nav-close-button');
+                const mobileNavPanel = document.getElementById('mobile-nav-panel');
+                const overlay = document.getElementById('mobile-menu-overlay');
+                if (!openButton || !closeButton || !mobileNavPanel || !overlay) {
+                    console.error('Не удалось найти один или несколько элементов мобильного меню.');
+                    return;
+                }
+                const navLinks = mobileNavPanel.querySelectorAll('a');
+                function openMenu() {
+                    overlay.style.display = 'block';
+                    mobileNavPanel.style.transform = 'translateX(0)';
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+                }
+                function closeMenu() {
+                    overlay.style.opacity = '0';
+                    mobileNavPanel.style.transform = 'translateX(-100%)';
+                    document.body.style.overflow = '';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 350);
+                }
+                openButton.addEventListener('click', openMenu);
+                closeButton.addEventListener('click', closeMenu);
+                overlay.addEventListener('click', closeMenu);
+                navLinks.forEach(link => link.addEventListener('click', closeMenu));
+            }
+
+            // --- Функция для загрузки компонентов (header, footer) ---
+            const loadComponent = (url, placeholderId, callback) => {
                 fetch(url)
                     .then(response => {
                         if (response.ok) return response.text();
@@ -169,11 +199,16 @@
                     })
                     .then(data => {
                         document.getElementById(placeholderId).innerHTML = data;
+                        if (callback) { callback(); }
                     })
                     .catch(error => console.error(`Ошибка загрузки компонента ${url}:`, error));
             };
-            loadComponent('header.html', 'header-placeholder');
+
+            // --- ЗАПУСК ---
+            loadComponent('header.html', 'header-placeholder', setupMenuEventListeners);
             loadComponent('footer.html', 'footer-placeholder');
+
+            // --- Логика для плавающей кнопки ---
             const floatingBtn = document.getElementById('floating-tg-button');
             const heroBtn = document.getElementById('hero-cta-button');
             const toggleFloatingButton = () => {
@@ -189,4 +224,5 @@
     </script>
 </body>
 </html>
+
 
