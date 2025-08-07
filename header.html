@@ -63,45 +63,6 @@
         </ul>
         <div class="mobile-nav-footer"><a href="https://t.me/agromabot" target="_blank">Перейти в бота</a></div>
     </div>
-
-    <!-- 
-      ИСПРАВЛЕННЫЙ СКРИПТ:
-      Убрана обертка 'DOMContentLoaded'. Скрипт теперь выполняется сразу после загрузки header.html,
-      когда все его элементы (кнопки, панели) уже существуют.
-    -->
-    <script>
-        const openButton = document.getElementById('burger-menu-button');
-        const closeButton = document.getElementById('mobile-nav-close-button');
-        const mobileNavPanel = document.getElementById('mobile-nav-panel');
-        const overlay = document.getElementById('mobile-menu-overlay');
-        const navLinks = mobileNavPanel.querySelectorAll('a');
-
-        function openMenu() {
-            if (!mobileNavPanel || !overlay) return;
-            overlay.style.display = 'block';
-            mobileNavPanel.style.transform = 'translateX(0)';
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-            }, 10);
-        }
-
-        function closeMenu() {
-            if (!mobileNavPanel || !overlay) return;
-            overlay.style.opacity = '0';
-            mobileNavPanel.style.transform = 'translateX(-100%)';
-            document.body.style.overflow = '';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 350);
-        }
-
-        if (openButton) openButton.addEventListener('click', openMenu);
-        if (closeButton) closeButton.addEventListener('click', closeMenu);
-        if (overlay) overlay.addEventListener('click', closeMenu);
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-    </script>
+    
+    <!-- НЕТ СКРИПТА! -->
 </header>
