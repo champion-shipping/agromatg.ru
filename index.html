@@ -17,7 +17,7 @@
 <link rel="manifest" href="/site.webmanifest" />
     
     <link rel="canonical" href="https://agromatg.ru/" />
-    <!-- SEO: Schema.org JSON-LD разметка -->
+   <!-- SEO: Schema.org JSON-LD разметка -->
     <script type="application/ld+json">
     [
       {
@@ -27,43 +27,37 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Telegram",
         "description": "Бесплатная доска объявлений в Telegram для покупки и продажи зерна, сельхозтехники и запчастей напрямую между пользователями.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "RUB"
-        },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
         "url": "https://t.me/agromabot"
       },
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "AgroMaBot",
-        "url": "https://agromatg.ru/",
-        "logo": https://agromatg.ru/logo.png",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer support",
-          "url": "https://t.me/garaev_alex"
-        }
+        "url": "https://agromatg.ru",
+        "logo": "https://agromatg.ru/logo.png",
+        "founder": [
+          { "@type": "Person", "name": "Александр" },
+          { "@type": "Person", "name": "Михаил" }
+        ]
       }
     ]
     </script>
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=103638989', 'ym');
-
-    ym(103638989, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/103638989" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=103638989', 'ym');
+        ym(103638989, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103638989" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
     
-    <!-- Глобальные стили -->
+    <!-- Глобальные и анимационные стили -->
     <style>
         :root {
             --primary-color: #28a745;
@@ -74,9 +68,7 @@
             --white: #ffffff;
             --border-color: #dee2e6;
         }
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -92,79 +84,280 @@
             padding: 0 20px;
             box-sizing: border-box;
         }
-        /* Отступ для контента, чтобы он не залезал под фиксированную шапку */
-        main {
-            padding-top: 75px; 
+        main { 
+            /* Динамический отступ сверху, учитывая высоту шапки и бегущей строки */
+            padding-top: calc(75px + 45px); 
+        }
+
+        /* Стили для анимации появления блоков при прокрутке */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Стили для плавающей кнопки */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes reveal-text {
+            0%, 25% { width: 0; opacity: 0; margin-left: 0; }
+            50%, 90% { width: 150px; opacity: 1; margin-left: 10px;}
+            100% { width: 0; opacity: 0; margin-left: 0; }
+        }
+        #floating-tg-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--primary-color);
+            border-radius: 50px; /* Делаем овальным для текста */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Начинаем с иконки */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-decoration: none;
+            transition: all 0.4s ease-in-out;
+            animation: pulse 2s infinite ease-in-out;
+            padding: 0 15px;
+            height: 60px;
+            overflow: hidden; /* Скрываем текст, когда он не нужен */
+        }
+        #floating-tg-button .icon {
+            font-size: 32px;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        #floating-tg-button .text {
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: reveal-text 8s infinite ease-in-out; /* Увеличил цикл для более редкого появления */
+        }
+        #floating-tg-button:hover {
+            animation-play-state: paused; /* Останавливаем анимацию при наведении */
+            transform: scale(1.05);
+        }
+
+        /* Стили для карточек категорий */
+        .category-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Стили для счетчика статистики */
+        .stat-item {
+            transition-delay: var(--delay, 0s);
         }
     </style>
 </head>
 <body>
 
-    <!-- Placeholder для шапки сайта -->
-    <div id="header-placeholder"></div>
+    <!-- Шапка с бегущей строкой -->
+    <header id="page-header" style="position: fixed; width: 100%; top: 0; left: 0; right: 0; z-index: 1000;">
+    
+        <!-- Стили для шапки и бегущей строки -->
+        <style>
+            /* Стили для бегущей строки */
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            .marquee-container {
+                background-color: var(--primary-dark);
+                overflow: hidden;
+                white-space: nowrap;
+                color: white;
+                padding: 10px 0;
+            }
+            .marquee-container a {
+                color: white;
+                text-decoration: none;
+                display: block;
+            }
+            .marquee-content {
+                display: inline-block;
+                padding-left: 100%;
+                animation: marquee 30s linear infinite;
+            }
+            .marquee-content span {
+                margin: 0 40px;
+                font-weight: 500;
+            }
+            .marquee-content span::before {
+                content: '⚡️';
+                margin-right: 10px;
+            }
+
+            /* Основные стили шапки */
+            .header-bar {
+                background-color: rgba(255, 255, 255, 0.85);
+                padding: 15px 0;
+                border-bottom: 1px solid var(--border-color);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            }
+            .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+            .header-logo a { text-decoration: none; font-size: 1.8em; font-weight: 700; color: var(--primary-dark); flex-shrink: 0; }
+            .header-logo span { color: var(--primary-color); }
+            #desktop-nav { display: flex; align-items: center; gap: 30px; }
+            #desktop-nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s; }
+            #desktop-nav a:hover { color: var(--primary-color); }
+            #burger-menu-container { display: none; }
+            @media (max-width: 768px) { #desktop-nav { display: none !important; } #burger-menu-container { display: block !important; } }
+            #burger-menu-button { background: none; border: none; cursor: pointer; padding: 5px; }
+            #burger-menu-button svg { width: 32px; height: 32px; stroke: var(--text-dark); display: block; }
+            #mobile-nav-panel { position: fixed; top: 0; left: 0; width: 300px; max-width: 80vw; height: 100%; background-color: var(--white); padding: 25px; box-shadow: 2px 0 15px rgba(0,0,0,0.15); z-index: 1050; overflow-y: auto; transform: translateX(-100%); transition: transform 0.35s ease-in-out; display: flex; flex-direction: column; box-sizing: border-box; }
+            #mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1040; display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+            .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+            .mobile-nav-header span { font-size: 1.6em; font-weight: 700; color: var(--primary-dark); }
+            #mobile-nav-close-button { background: none; border: none; cursor: pointer; padding: 5px; }
+            #mobile-nav-close-button svg { width: 28px; height: 28px; stroke: var(--text-dark); }
+            .mobile-nav-links { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
+            .mobile-nav-links li { margin-bottom: 25px; }
+            .mobile-nav-links a { text-decoration: none; color: var(--text-dark); font-size: 1.2em; font-weight: 500; }
+            .mobile-nav-footer { margin-top: auto; padding-top: 20px; }
+            .mobile-nav-footer a { display: flex; align-items: center; justify-content: center; width: 100%; background-color: var(--primary-color); color: var(--white); padding: 15px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold; box-sizing: border-box; }
+        </style>
+        
+        <!-- НОВЫЙ БЛОК: Бегущая строка -->
+        <div class="marquee-container">
+            <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" title="Узнать о рекламе">
+                <div class="marquee-content">
+                    <span>Разместите рекламу в боте и получите охват всей аудитории</span>
+                    <span>Ускорьте продажу — закажите рекламное уведомление</span>
+                    <span>Специальные условия для крупных рекламодателей</span>
+                    <!-- Дублирование для бесшовности -->
+                    <span>Разместите рекламу в боте и получите охват всей аудитории</span>
+                    <span>Ускорьте продажу — закажите рекламное уведомление</span>
+                    <span>Специальные условия для крупных рекламодателей</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Видимая часть шапки -->
+        <div class="header-bar">
+            <div class="header-container">
+                <div class="header-logo">
+                    <a href="/">AgroMa<span>Bot</span></a>
+                </div>
+                <nav id="desktop-nav">
+                    <a href="/about">О нас</a>
+                    <a href="/#categories">Категории</a>
+                    <a href="/#advertising">Реклама</a>
+                    <a href="/contact">Контакты</a>
+                </nav>
+                <div id="burger-menu-container">
+                    <button id="burger-menu-button" aria-label="Открыть меню">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Скрытые элементы меню -->
+        <div id="mobile-menu-overlay"></div>
+        <div id="mobile-nav-panel">
+            <div class="mobile-nav-header">
+                <span>Меню</span>
+                <button id="mobile-nav-close-button" aria-label="Закрыть меню">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/#categories">Категории</a></li>
+                <li><a href="/#advertising">Реклама</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <a href="https://t.me/agromabot" target="_blank">Перейти в бота</a>
+            </div>
+        </div>
+    </header>
 
     <main>
         <!-- ======== СЕКЦИЯ 1: ГЕРОЙ ======== -->
         <section id="hero" style="background-color: var(--bg-light); text-align: center; padding: 80px 20px; border-bottom: 1px solid var(--border-color);">
-            <div class="container" style="max-width: 900px;">
+            <div class="container scroll-reveal" style="max-width: 900px;">
                 <h1 style="font-size: clamp(2.2em, 6vw, 3em); margin: 0 0 20px 0; color: var(--text-dark);">Продавайте и покупайте агропродукцию напрямую</h1>
                 <p style="font-size: clamp(1em, 4vw, 1.25em); color: var(--text-light); margin-bottom: 40px;">AgroMaBot — это современная аграрная доска объявлений в вашем Telegram. Размещайте объявления о продаже зерна, техники и запчастей бесплатно и без посредников.</p>
-                <a href="https://t.me/agromabot" target="_blank" id="hero-cta-button" style="display: inline-block; background-color: var(--primary-color); color: var(--white); padding: 18px 35px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
+                <a href="https://t.me/agromabot" target="_blank" id="hero-cta-button" style="display: inline-block; background-color: var(--primary-color); color: var(--white); padding: 18px 35px; text-decoration: none; font-size: 1.2em; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); transition: transform 0.3s, box-shadow 0.3s;">
                     🚀 Начать продавать!
                 </a>
             </div>
         </section>
 
         <!-- ======== СЕКЦИЯ 2: СТАТИСТИКА ("О НАС" В ЦИФРАХ) ======== -->
-        <section id="about" style="padding: 60px 0; background-color: var(--white);">
+        <section id="about" style="padding: 80px 0; background-color: var(--white);">
             <div class="container">
+                 <h2 class="scroll-reveal" style="text-align: center; font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 50px 0; color: var(--text-dark);">Нас уже выбирают</h2>
                 <div style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 30px;">
-                    <div style="flex: 1; min-width: 220px;">
-                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">567+</div>
+                    <!-- Добавлен класс .scroll-reveal и инлайновый стиль для задержки анимации -->
+                    <div class="stat-item scroll-reveal" style="flex: 1; min-width: 220px; --delay: 0s;">
+                        <div class="stat-number" style="font-size: clamp(2.5em, 8vw, 3.5em); font-weight: 700; color: var(--primary-dark);">567+</div>
                         <div style="font-size: 1.1em; color: var(--text-light);">Активных пользователей</div>
                     </div>
-                    <div style="flex: 1; min-width: 220px;">
-                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">64+</div>
+                    <div class="stat-item scroll-reveal" style="flex: 1; min-width: 220px; --delay: 0.2s;">
+                        <div class="stat-number" style="font-size: clamp(2.5em, 8vw, 3.5em); font-weight: 700; color: var(--primary-dark);">64+</div>
                         <div style="font-size: 1.1em; color: var(--text-light);">Опубликованных объявлений</div>
                     </div>
-                    <div style="flex: 1; min-width: 220px;">
-                        <div style="font-size: 3em; font-weight: 700; color: var(--primary-dark);">24+</div>
+                    <div class="stat-item scroll-reveal" style="flex: 1; min-width: 220px; --delay: 0.4s;">
+                        <div class="stat-number" style="font-size: clamp(2.5em, 8vw, 3.5em); font-weight: 700; color: var(--primary-dark);">24+</div>
                         <div style="font-size: 1.1em; color: var(--text-light);">Подключенных регионов</div>
                     </div>
                 </div>
             </div>
         </section>
         
-<!-- ======== СЕКЦИЯ 3: КАТЕГОРИИ ======== -->
-<section id="categories" style="padding: 80px 0; background-color: var(--bg-light);">
-    <div class="container">
-        <h2 style="text-align: center; font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 50px 0; color: var(--text-dark);">Основные категории объявлений</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);">
-                <img src="/icon/icon-grain.png" alt="Зерновые и масличные" title="Зерновые и масличные" width="64" height="64" style="margin-bottom: 20px;">
-                <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Зерновые и масличные</h3>
-                <p style="color: var(--text-light);">Пшеница, ячмень, кукуруза, соя, подсолнечник, рапс и другие культуры.</p>
+        <!-- ======== СЕКЦИЯ 3: КАТЕГОРИИ ======== -->
+        <section id="categories" style="padding: 80px 0; background-color: var(--bg-light);">
+            <div class="container">
+                <h2 class="scroll-reveal" style="text-align: center; font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 50px 0; color: var(--text-dark);">Основные категории объявлений</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <!-- Добавлен класс .category-card для hover-эффекта и .scroll-reveal для анимации появления -->
+                    <div class="category-card scroll-reveal" style="--delay: 0s;">
+                        <img src="/icon/icon-grain.png" alt="Зерновые и масличные" title="Зерновые и масличные" width="64" height="64" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Зерновые и масличные</h3>
+                        <p style="color: var(--text-light);">Пшеница, ячмень, кукуруза, соя, подсолнечник, рапс и другие культуры.</p>
+                    </div>
+                    <div class="category-card scroll-reveal" style="--delay: 0.2s;">
+                        <img src="/icon/icon-agricultural-machinery.png" alt="Сельхозтехника" title="Сельхозтехника" width="64" height="64" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Сельхозтехника</h3>
+                        <p style="color: var(--text-light);">Тракторы, комбайны, посевное и почвообрабатывающее оборудование.</p>
+                    </div>
+                    <div class="category-card scroll-reveal" style="--delay: 0.4s;">
+                        <img src="/icon/icon-spare-parts.png" alt="Запчасти и комплектующие" title="Запчасти и комплектующие" width="64" height="64" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Запчасти и комплектующие</h3>
+                        <p style="color: var(--text-light);">Все для ремонта и обслуживания вашей техники: от шин и дисков до двигателей.</p>
+                    </div>
+                </div>
             </div>
-            <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);">
-                <img src="/icon/icon-agricultural-machinery.png" alt="Сельхозтехника" title="Сельхозтехника" width="64" height="64" style="margin-bottom: 20px;">
-                <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Сельхозтехника</h3>
-                <p style="color: var(--text-light);">Тракторы, комбайны, посевное и почвообрабатывающее оборудование.</p>
-            </div>
-            <div style="background-color: var(--white); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.07);">
-                <img src="/icon/icon-spare-parts.png" alt="Запчасти и комплектующие" title="Запчасти и комплектующие" width="64" height="64" style="margin-bottom: 20px;">
-                <h3 style="font-size: 1.5em; margin: 0 0 10px 0; color: var(--text-dark);">Запчасти и комплектующие</h3>
-                <p style="color: var(--text-light);">Все для ремонта и обслуживания вашей техники: от шин и дисков до двигателей.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- ======== СЕКЦИЯ 4: РЕКЛАМА ======== -->
         <section id="advertising" style="padding: 80px 20px; background-color: var(--white); text-align: center;">
-            <div class="container" style="max-width: 800px;">
+            <div class="container scroll-reveal" style="max-width: 800px;">
                 <h2 style="font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 20px 0; color: var(--text-dark);">Реклама в AgroMaBot</h2>
                 <p style="font-size: clamp(1em, 4vw, 1.2em); color: var(--text-light); margin-bottom: 30px;">Хотите ускорить продажу или продвинуть свои услуги? Воспользуйтесь нашими рекламными возможностями! Ваше объявление увидят все пользователи бота в виде персонального уведомления.</p>
-                <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" style="display: inline-block; background-color: transparent; color: var(--primary-color); padding: 16px 35px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold; border: 2px solid var(--primary-color);">
+                <a href="https://telegra.ph/Reklama-v-AGROMABOT-07-29" target="_blank" style="display: inline-block; background-color: transparent; color: var(--primary-color); padding: 16px 35px; text-decoration: none; font-size: 1.1em; border-radius: 8px; font-weight: bold; border: 2px solid var(--primary-color); transition: background-color 0.3s, color 0.3s;">
                     Узнать цены и форматы
                 </a>
             </div>
@@ -172,27 +365,27 @@
         
     </main>
 
-    <!-- Placeholder для подвала сайта -->
-    <div id="footer-placeholder"></div>
+    <!-- Placeholder для подвала сайта (если он вам нужен) -->
+    <!-- <div id="footer-placeholder"></div> -->
 
-    <!-- Плавающая кнопка для перехода в ТГ -->
-    <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transform: scale(0); transition: transform 0.3s ease-in-out, background-color 0.3s;">
-        <span style="font-size: 32px; line-height: 1;">🚀</span>
+    <!-- ОБНОВЛЕННАЯ Плавающая кнопка для перехода в ТГ -->
+    <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank">
+        <span class="icon">🚀</span>
+        <span class="text">Перейти в бота</span>
     </a>
 
-    <!-- ГЛАВНЫЙ СКРИПТ ЗАГРУЗКИ -->
+    <!-- ГЛАВНЫЙ СКРИПТ (логика анимаций и меню) -->
    <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- Функция, которая "оживляет" меню (будет вызвана после загрузки шапки) ---
+
+            // --- Логика для мобильного меню (из вашего кода) ---
             function setupMenuEventListeners() {
                 const openButton = document.getElementById('burger-menu-button');
                 const closeButton = document.getElementById('mobile-nav-close-button');
                 const mobileNavPanel = document.getElementById('mobile-nav-panel');
                 const overlay = document.getElementById('mobile-menu-overlay');
-                if (!openButton || !closeButton || !mobileNavPanel || !overlay) {
-                    console.error('Не удалось найти один или несколько элементов мобильного меню.');
-                    return;
-                }
+                if (!openButton || !closeButton || !mobileNavPanel || !overlay) return;
+                
                 const navLinks = mobileNavPanel.querySelectorAll('a');
                 function openMenu() {
                     overlay.style.display = 'block';
@@ -211,41 +404,60 @@
                 overlay.addEventListener('click', closeMenu);
                 navLinks.forEach(link => link.addEventListener('click', closeMenu));
             }
+            
+            // --- Логика для анимации при прокрутке ---
+            const revealElements = document.querySelectorAll('.scroll-reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const elem = entry.target;
+                        // Применяем задержку, если она задана в стилях
+                        elem.style.transitionDelay = elem.style.getPropertyValue('--delay') || '0s';
+                        elem.classList.add('is-visible');
+                        // Можно убрать наблюдение после первого срабатывания
+                        revealObserver.unobserve(elem);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            revealElements.forEach(elem => {
+                revealObserver.observe(elem);
+            });
 
-            // --- Функция для загрузки компонентов (header, footer) ---
-            const loadComponent = (url, placeholderId, callback) => {
-                fetch(url)
-                    .then(response => {
-                        if (response.ok) return response.text();
-                        throw new Error(`Network response was not ok for ${url}.`);
-                    })
-                    .then(data => {
-                        document.getElementById(placeholderId).innerHTML = data;
-                        if (callback) { callback(); }
-                    })
-                    .catch(error => console.error(`Ошибка загрузки компонента ${url}:`, error));
-            };
+            // --- Анимация для кнопки "Начать продавать!" ---
+            const heroCtaButton = document.getElementById('hero-cta-button');
+            if (heroCtaButton) {
+                heroCtaButton.addEventListener('mouseover', () => {
+                    heroCtaButton.style.transform = 'scale(1.05)';
+                    heroCtaButton.style.boxShadow = '0 8px 25px rgba(40, 167, 69, 0.4)';
+                });
+                heroCtaButton.addEventListener('mouseout', () => {
+                    heroCtaButton.style.transform = 'scale(1)';
+                    heroCtaButton.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.3)';
+                });
+            }
 
-            // --- ЗАПУСК ---
-            loadComponent('header.html', 'header-placeholder', setupMenuEventListeners);
-            loadComponent('footer.html', 'footer-placeholder');
+            // --- Анимация для кнопки "Узнать цены" ---
+            const adButton = document.querySelector('#advertising a');
+            if(adButton) {
+                adButton.addEventListener('mouseover', () => {
+                    adButton.style.backgroundColor = 'var(--primary-color)';
+                    adButton.style.color = 'var(--white)';
+                });
+                adButton.addEventListener('mouseout', () => {
+                    adButton.style.backgroundColor = 'transparent';
+                    adButton.style.color = 'var(--primary-color)';
+                });
+            }
 
-            // --- Логика для плавающей кнопки ---
-            const floatingBtn = document.getElementById('floating-tg-button');
-            const heroBtn = document.getElementById('hero-cta-button');
-            const toggleFloatingButton = () => {
-                if (!heroBtn || !floatingBtn) return;
-                if (heroBtn.getBoundingClientRect().bottom < 0) {
-                    floatingBtn.style.transform = 'scale(1)';
-                } else {
-                    floatingBtn.style.transform = 'scale(0)';
-                }
-            };
-            window.addEventListener('scroll', toggleFloatingButton);
+            // --- ЗАПУСК ВСЕХ СКРИПТОВ ---
+            setupMenuEventListeners();
         });
     </script>
 </body>
 </html>
+
 
 
 
