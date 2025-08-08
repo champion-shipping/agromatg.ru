@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: Основные мета-теги -->
+    <title>О команде AgroMaBot | Наша история и миссия</title>
+    <meta name="description" content="Узнайте о создателях AgroMaBot. История фермера Александра и разработчика Георгия, которые объединились, чтобы изменить агрорынок.">
+    <meta name="keywords" content="команда agromabot, о проекте agromabot, создатели агромабот, александр гараев, георгий, миссия agromabot">
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Agroma" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <link rel="canonical" href="https://agromatg.ru/about" />
+    <!-- SEO: Schema.org JSON-LD разметка (можно оставить общей для всего сайта) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AgroMaBot",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Telegram",
+        "description": "Бесплатная доска объявлений в Telegram для покупки и продажи зерна, сельхозтехники и запчастей напрямую между пользователями.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+        "url": "https://t.me/agromabot"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AgroMaBot",
+        "url": "https://agromatg.ru/about",
+        "logo": "https://agromatg.ru/logo.png",
+        "founder": [
+          { "@type": "Person", "name": "Александр" },
+          { "@type": "Person", "name": "Георгий" }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "url": "https://t.me/garaev_alex"
+        }
+      }
+    ]
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=103638989', 'ym');
+
+        ym(103638989, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103638989" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
+    <!-- Глобальные стили -->
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --primary-dark: #1e7e34;
+            --text-dark: #212529;
+            --text-light: #495057;
+            --bg-light: #f4f8f5;
+            --white: #ffffff;
+            --border-color: #dee2e6;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        main { padding-top: 75px; }
+
+        /* Стили для анимации появления */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder для шапки сайта -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- ======== СЕКЦИЯ 1: ЗАГОЛОВОК ======== -->
+        <section id="about-hero" style="background-color: var(--bg-light); text-align: center; padding: 80px 20px; border-bottom: 1px solid var(--border-color);">
+            <div class="container scroll-reveal" style="max-width: 900px;">
+                <h1 style="font-size: clamp(2.2em, 6vw, 3em); margin: 0 0 20px 0; color: var(--text-dark);">Два партнера. Одна большая цель.</h1>
+                <p style="font-size: clamp(1em, 4vw, 1.25em); color: var(--text-light); margin-bottom: 0;">AgroMaBot — это не просто сервис. Это результат союза практического опыта в агрономии и передовых цифровых технологий.</p>
+            </div>
+        </section>
+
+        <!-- ======== СЕКЦИЯ 2: КОМАНДА ======== -->
+        <section id="team" style="padding: 80px 0;">
+            <div class="container">
+                <h2 class="scroll-reveal" style="text-align: center; font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 60px 0; color: var(--text-dark);">Познакомьтесь с основателями</h2>
+                
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;">
+
+                    <!-- Карточка Александра -->
+                    <div class="scroll-reveal" style="perspective: 1500px; max-width: 420px; min-width: 300px; flex: 1;">
+                        <div class="card-inner" style="position: relative; width: 100%; height: 500px; transition: transform 0.8s; transform-style: preserve-3d;" onmouseover="this.style.transform='rotateY(180deg)';" onmouseout="this.style.transform='rotateY(0deg)';">
+                            <!-- Передняя сторона -->
+                            <div class="card-front" style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--white); color: black; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; text-align: center;">
+                                <img src="https://via.placeholder.com/120/28a745/FFFFFF?text=A" alt="Александр" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary-color); margin-bottom: 20px;">
+                                <h3 style="font-size: 1.8em; margin: 0 0 10px 0; color: var(--text-dark);">Александр</h3>
+                                <p style="font-size: 1.1em; color: var(--primary-dark); font-weight: bold;">Идеолог и основатель</p>
+                                <p style="color: var(--text-light); margin-top: 15px;">Фермер с многолетним опытом, который знает все боли и потребности агрорынка изнутри.</p>
+                                <div style="margin-top: 20px; font-size: 0.9em; color: var(--text-light);">(Наведите для подробностей)</div>
+                            </div>
+                            <!-- Задняя сторона -->
+                            <div class="card-back" style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--primary-dark); color: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; text-align: center;">
+                                <h4 style="font-size: 1.5em; margin: 0 0 15px 0;">Роль в проекте</h4>
+                                <p style="margin: 0 0 25px 0; font-size: 1.05em;">Александр — автор идеи AgroMaBot. Он отвечает за стратегическое развитие, маркетинг и создание сильного сообщества вокруг проекта. Его главная задача — сделать бота известным и полезным для каждого агрария.</p>
+                                <a href="https://t.me/garaev_alex" target="_blank" style="display: inline-block; background-color: var(--white); color: var(--primary-dark); padding: 12px 25px; text-decoration: none; font-size: 1em; border-radius: 8px; font-weight: bold;">Связаться в Telegram</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Карточка Георгия -->
+                    <div class="scroll-reveal" style="perspective: 1500px; max-width: 420px; min-width: 300px; flex: 1;">
+                        <div class="card-inner" style="position: relative; width: 100%; height: 500px; transition: transform 0.8s; transform-style: preserve-3d;" onmouseover="this.style.transform='rotateY(180deg)';" onmouseout="this.style.transform='rotateY(0deg)';">
+                            <!-- Передняя сторона -->
+                            <div class="card-front" style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--white); color: black; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; text-align: center;">
+                                <img src="https://via.placeholder.com/120/212529/FFFFFF?text=G" alt="Георгий" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--text-dark); margin-bottom: 20px;">
+                                <h3 style="font-size: 1.8em; margin: 0 0 10px 0; color: var(--text-dark);">Георгий</h3>
+                                <p style="font-size: 1.1em; color: var(--primary-dark); font-weight: bold;">Технический гений</p>
+                                <p style="color: var(--text-light); margin-top: 15px;">Разработчик и IT-специалист, который воплощает идеи в жизнь с помощью кода.</p>
+                                <div style="margin-top: 20px; font-size: 0.9em; color: var(--text-light);">(Наведите для подробностей)</div>
+                            </div>
+                            <!-- Задняя сторона -->
+                            <div class="card-back" style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--text-dark); color: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; text-align: center;">
+                                <h4 style="font-size: 1.5em; margin: 0 0 15px 0;">Роль в проекте</h4>
+                                <p style="margin: 0 0 25px 0; font-size: 1.05em;">Георгий отвечает за всю техническую магию: разработку и поддержку бота, создание и SEO-оптимизацию сайта, а также за внедрение новых функций. Его цель — стабильный и удобный продукт.</p>
+                                <a href="https://t.me/ogg_90" target="_blank" style="display: inline-block; background-color: var(--white); color: var(--text-dark); padding: 12px 25px; text-decoration: none; font-size: 1em; border-radius: 8px; font-weight: bold;">Связаться в Telegram</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======== СЕКЦИЯ 3: НАША МИССИЯ ======== -->
+        <section id="mission" style="padding: 80px 20px; background-color: var(--bg-light); text-align: center;">
+            <div class="container scroll-reveal" style="max-width: 900px;">
+                <h2 style="font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 20px 0; color: var(--text-dark);">Наша общая миссия</h2>
+                <p style="font-size: clamp(1em, 4vw, 1.25em); color: var(--text-light);">Мы объединили наши силы, потому что верим в будущее, где каждый фермер имеет прямой доступ к рынку. Где технологии помогают продавать и покупать агропродукцию честно, быстро и без лишних посредников. </p>
+                <p style="font-size: clamp(1em, 4vw, 1.25em); color: var(--text-light); margin-top: 20px; font-weight: bold;">AgroMaBot — это наш инструмент, чтобы перевернуть правила игры, сделав рынок доступнее и прозрачнее для всех участников, от малого фермерского хозяйства до крупного экспортера.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Placeholder для подвала сайта -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Плавающая кнопка для перехода в ТГ -->
+    <a id="floating-tg-button" href="https://t.me/agromabot" target="_blank" style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transform: scale(1); transition: transform 0.3s ease-in-out, background-color 0.3s;">
+        <span style="font-size: 32px; line-height: 1;">🚀</span>
+    </a>
+
+    <!-- ГЛАВНЫЙ СКРИПТ ЗАГРУЗКИ -->
+   <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // --- Функция для загрузки компонентов (header, footer) ---
+            const loadComponent = (url, placeholderId, callback) => {
+                fetch(url)
+                    .then(response => {
+                        if (response.ok) return response.text();
+                        throw new Error(`Network response was not ok for ${url}.`);
+                    })
+                    .then(data => {
+                        document.getElementById(placeholderId).innerHTML = data;
+                        if (callback) { callback(); }
+                    })
+                    .catch(error => console.error(`Ошибка загрузки компонента ${url}:`, error));
+            };
+
+            // --- Функция, которая "оживляет" меню (будет вызвана после загрузки шапки) ---
+            function setupMenuEventListeners() {
+                const openButton = document.getElementById('burger-menu-button');
+                const closeButton = document.getElementById('mobile-nav-close-button');
+                const mobileNavPanel = document.getElementById('mobile-nav-panel');
+                const overlay = document.getElementById('mobile-menu-overlay');
+                if (!openButton || !closeButton || !mobileNavPanel || !overlay) {
+                    console.error('Не удалось найти один или несколько элементов мобильного меню.');
+                    return;
+                }
+                const navLinks = mobileNavPanel.querySelectorAll('a');
+                function openMenu() {
+                    overlay.style.display = 'block';
+                    mobileNavPanel.style.transform = 'translateX(0)';
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+                }
+                function closeMenu() {
+                    overlay.style.opacity = '0';
+                    mobileNavPanel.style.transform = 'translateX(-100%)';
+                    document.body.style.overflow = '';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 350);
+                }
+                openButton.addEventListener('click', openMenu);
+                closeButton.addEventListener('click', closeMenu);
+                overlay.addEventListener('click', closeMenu);
+                navLinks.forEach(link => link.addEventListener('click', closeMenu));
+            }
+
+            // --- ЗАПУСК ---
+            loadComponent('header.html', 'header-placeholder', setupMenuEventListeners);
+            loadComponent('footer.html', 'footer-placeholder');
+
+            // --- Логика для анимации при прокрутке ---
+            const revealElements = document.querySelectorAll('.scroll-reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            revealElements.forEach(elem => {
+                revealObserver.observe(elem);
+            });
+        });
+    </script>
+</body>
+</html>
