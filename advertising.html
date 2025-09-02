@@ -181,10 +181,16 @@
             margin: 0 0 10px 0;
             color: var(--text-dark);
         }
-        .ad-card p {
+        .ad-card p { /* Скорректированный отступ после описания */
             color: var(--text-light);
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Уменьшен отступ */
             flex-grow: 1; /* Чтобы текст занимал доступное пространство */
+        }
+        .ad-card h4 { /* Скорректированный отступ для заголовка тарифов */
+            font-size: 1.2em;
+            margin-top: 15px; /* Добавлен отступ сверху, чтобы отделить от предыдущего P */
+            margin-bottom: 10px; /* Отступ до списка тарифов */
+            color: var(--text-dark);
         }
         .ad-card ul {
             list-style: none;
@@ -193,7 +199,7 @@
             text-align: left;
             width: 100%;
             max-width: 250px;
-            margin-top: auto; /* Прижимает список тарифов к низу карточки */
+            /* margin-top: auto; */ /* Убрано, т.к. кнопка будет прижата */
         }
         .ad-card ul li {
             background-color: var(--bg-light);
@@ -211,6 +217,32 @@
         }
         .ad-card ul li strong {
             color: var(--primary-dark);
+        }
+
+        /* Стиль для кнопки "Заказать рекламу" */
+        .order-ad-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: auto; /* Прижимает кнопку к низу карточки */
+            width: fit-content;
+            justify-content: center;
+            white-space: nowrap; /* Предотвращает перенос текста на кнопке */
+        }
+        .order-ad-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        .order-ad-button i {
+            margin-left: 10px; /* Отступ между текстом и иконкой */
         }
 
         .tariff-table {
@@ -262,7 +294,7 @@
             </div>
         </section>
         
-        <!-- ======== СЕКЦИЯ 3: ФОРМАТЫ РАЗМЕЩЕНИЯ ======== -->
+<!-- ======== СЕКЦИЯ 3: ФОРМАТЫ РАЗМЕЩЕНИЯ ======== -->
         <section id="ad-formats" style="padding: 80px 0; background-color: var(--bg-light);">
             <div class="container">
                 <h2 class="scroll-reveal" style="text-align: center; font-size: clamp(1.8em, 5vw, 2.5em); margin: 0 0 50px 0; color: var(--text-dark);">Доступные форматы размещения</h2>
@@ -280,6 +312,9 @@
                             <li>48 часов: <strong>1200 ₽</strong></li>
                             <li>72 часа: <strong>1500 ₽</strong></li>
                         </ul>
+                        <a href="https://t.me/garaev_alex?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B8%D0%BD%D0%B4%D0%B8%D0%B2%D0%B8%D0%B4%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BE%D1%81%D1%82%20%D0%B2%20AgroMaBot." target="_blank" class="order-ad-button">
+                            Заказать рекламу <i class="fab fa-telegram-plane"></i>
+                        </a>
                     </div>
 
                     <!-- Карточка: Продвижение существующего объявления -->
@@ -294,6 +329,9 @@
                             <li>48 часов: <strong>1100 ₽</strong></li>
                             <li>72 часа: <strong>1500 ₽</strong></li>
                         </ul>
+                        <a href="https://t.me/garaev_alex?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D0%B5%D0%B3%D0%BE%20%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20AgroMaBot." target="_blank" class="order-ad-button">
+                            Заказать рекламу <i class="fab fa-telegram-plane"></i>
+                        </a>
                     </div>
 
                     <!-- Карточка: Реклама стороннего товара/услуги (пост с кнопкой) -->
@@ -308,6 +346,9 @@
                             <li>48 часов: <strong>1500 ₽</strong></li>
                             <li>72 часа: <strong>1900 ₽</strong></li>
                         </ul>
+                        <a href="https://t.me/garaev_alex?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%83%20%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%B0%2F%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8%20%D0%B2%20AgroMaBot." target="_blank" class="order-ad-button">
+                            Заказать рекламу <i class="fab fa-telegram-plane"></i>
+                        </a>
                     </div>
                 </div>
             </div>
