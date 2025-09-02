@@ -165,7 +165,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100%; /* Для равномерной высоты в гриде */
+            height: 100%;
         }
         .ad-card:hover {
             transform: translateY(-10px);
@@ -181,15 +181,15 @@
             margin: 0 0 10px 0;
             color: var(--text-dark);
         }
-        .ad-card p { /* Скорректированный отступ после описания */
+        .ad-card p { /* Изменено: Уменьшен margin-bottom */
             color: var(--text-light);
-            margin-bottom: 15px; /* Уменьшен отступ */
-            flex-grow: 1; /* Чтобы текст занимал доступное пространство */
+            margin-bottom: 8px; /* Уменьшен отступ после описания */
+            flex-grow: 1;
         }
-        .ad-card h4 { /* Скорректированный отступ для заголовка тарифов */
+        .ad-card h4 { /* Изменено: Уменьшен margin-top */
             font-size: 1.2em;
-            margin-top: 15px; /* Добавлен отступ сверху, чтобы отделить от предыдущего P */
-            margin-bottom: 10px; /* Отступ до списка тарифов */
+            margin-top: 10px; /* Уменьшен отступ сверху */
+            margin-bottom: 10px;
             color: var(--text-dark);
         }
         .ad-card ul {
@@ -199,7 +199,7 @@
             text-align: left;
             width: 100%;
             max-width: 250px;
-            /* margin-top: auto; */ /* Убрано, т.к. кнопка будет прижата */
+            /* margin-top: auto; */ /* Это было убрано ранее, так и оставляем */
         }
         .ad-card ul li {
             background-color: var(--bg-light);
@@ -220,7 +220,7 @@
         }
 
         /* Стиль для кнопки "Заказать рекламу" */
-        .order-ad-button {
+        .order-ad-button { /* Изменено: Добавлен margin-top */
             display: inline-flex;
             align-items: center;
             background-color: var(--primary-color);
@@ -232,17 +232,17 @@
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: auto; /* Прижимает кнопку к низу карточки */
+            margin-top: 25px; /* Добавлен отступ сверху */
             width: fit-content;
             justify-content: center;
-            white-space: nowrap; /* Предотвращает перенос текста на кнопке */
+            white-space: nowrap;
         }
         .order-ad-button:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
         }
         .order-ad-button i {
-            margin-left: 10px; /* Отступ между текстом и иконкой */
+            margin-left: 10px;
         }
 
         .tariff-table {
